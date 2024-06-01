@@ -1,8 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=44 format=3 uid="uid://cikjc5sft7k1p"]
+[gd_resource type="SpriteFrames" load_steps=49 format=3 uid="uid://cikjc5sft7k1p"]
 
 [ext_resource type="Texture2D" uid="uid://b2g8t3r7wmsrx" path="res://sprites/character/throw_small.png" id="1_vtixa"]
 [ext_resource type="Texture2D" uid="uid://dxvoibqwatd33" path="res://sprites/character/throw_medium.png" id="2_0xbq0"]
 [ext_resource type="Texture2D" uid="uid://pyomyy4d7w37" path="res://sprites/character/throw_large.png" id="3_f6ogh"]
+[ext_resource type="Texture2D" uid="uid://dy4q3nfrn8fi7" path="res://sprites/character/damaged.png" id="4_0ggfx"]
 [ext_resource type="Texture2D" uid="uid://bhht2rbiu1lhk" path="res://sprites/character/idle.png" id="4_g4f7k"]
 [ext_resource type="Texture2D" uid="uid://cp3gs3e54xx8o" path="res://sprites/character/run_empty.png" id="5_76crc"]
 [ext_resource type="Texture2D" uid="uid://5rmohydi2fiv" path="res://sprites/character/run_small.png" id="6_2l0k1"]
@@ -20,6 +21,22 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2he4"]
 atlas = ExtResource("3_f6ogh")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfj4n"]
+atlas = ExtResource("4_0ggfx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_junu4"]
+atlas = ExtResource("4_0ggfx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xk0a"]
+atlas = ExtResource("4_0ggfx")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg32c"]
+atlas = ExtResource("4_0ggfx")
+region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6hycs"]
 atlas = ExtResource("4_g4f7k")
@@ -174,6 +191,38 @@ animations = [{
 "loop": true,
 "name": &"aim_3",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfj4n")
+}],
+"loop": false,
+"name": &"damaged_0",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_junu4")
+}],
+"loop": false,
+"name": &"damaged_1",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xk0a")
+}],
+"loop": false,
+"name": &"damaged_2",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg32c")
+}],
+"loop": false,
+"name": &"damaged_3",
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,

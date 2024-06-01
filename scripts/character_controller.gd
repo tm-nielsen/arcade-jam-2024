@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED}
+enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED, DEAD}
 
 @export_range(1, 2) var player_number: int = 1
 @export var two_player_colour: Color = Color.WHITE
@@ -8,6 +8,8 @@ enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED}
 @export var movement_speed: float = 200
 @export var animator: AnimatedSprite2D
 @export var coin_collection_area: Area2D
+@export var enemy_recoil: float = 200
+@export var enemy_recoil_damping: float = 3
 
 @export_subgroup("dash", "dash")
 @export var dash_initial_acceleration: float = 200
@@ -21,6 +23,7 @@ enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED}
 
 var state: PlayerState
 var coins_held: int = 1
+var is_dead: get = _get_is_dead
 
 
 func _ready():
@@ -39,7 +42,7 @@ func _ready():
   coin_collection_area.body_entered.connect(_on_body_entered_coin_collection_area)
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
   var input_direction := get_numbered_input_direction()
   coin_thrower.process(input_direction, is_numbered_action_pressed("throw"))
 
@@ -53,6 +56,8 @@ func _physics_process(_delta):
     if state == PlayerState.NEUTRAL:
       play_numbered_animation("run")
 
+  elif state == PlayerState.DAMAGED:
+    velocity *= 1.0 - delta * enemy_recoil_damping
   else:
     velocity = Vector2.ZERO
     if state == PlayerState.NEUTRAL:
@@ -78,6 +83,16 @@ func get_maximum_speed() -> float:
     PlayerState.DASHING:
       return dash_movement_speed
   return movement_speed
+
+
+func recieve_enemy_contact(enemy: EnemyController):
+  if state != PlayerState.DAMAGED:
+    coin_thrower.disable()
+    state = PlayerState.DAMAGED
+    coins_held -= 1
+    play_numbered_animation("damaged")
+    var direction = (position - enemy.position).normalized()
+    velocity = direction * enemy_recoil
 
 
 func _on_aiming_started():
@@ -106,6 +121,13 @@ func _on_animation_finished():
   if state == PlayerState.THROWING:
     state = PlayerState.NEUTRAL
     if coins_held > 0:
+      coin_thrower.enable()
+  elif state == PlayerState.DAMAGED:
+    state = PlayerState.NEUTRAL
+    play_numbered_animation("run")
+    if coins_held < 0:
+      state = PlayerState.DEAD
+    elif coins_held > 0:
       coin_thrower.enable()
 
 
@@ -139,6 +161,10 @@ func _get_numbered_input_axis(negative_action: String, positive_action: String) 
 
 func _get_input_name(simple_name: String) -> String:
   return ("p%d_" % player_number) + simple_name
+
+
+func _get_is_dead() -> bool:
+  return state == PlayerState.DEAD
 
     
 func _clamp_vector_length(v: Vector2, limit: float) -> Vector2:

@@ -50,13 +50,14 @@ radius = 6.0
 radius = 6.0
 height = 18.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animator", "player_collision_area")]
 texture_filter = 1
 collision_layer = 8
 collision_mask = 13
 script = ExtResource("1_xlscy")
 animator = NodePath("Sprite2D")
 corpse_prefab = ExtResource("2_0oxjx")
+player_collision_area = NodePath("PlayerCollisionArea")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -2)

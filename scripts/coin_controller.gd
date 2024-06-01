@@ -47,6 +47,6 @@ func _on_body_entered(body: PhysicsBody2D):
   add_trail_point()
 
   if body is EnemyController:
-    body.on_coin_hit(self)
+    body.recieve_coin_contact(self)
 
   score_multiplier += score_multiplier_increment

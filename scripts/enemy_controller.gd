@@ -7,9 +7,14 @@ extends CharacterBody2D
 @export var animator: AnimatedSprite2D
 @export var corpse_prefab: PackedScene
 
+@export_subgroup("player collision", "player_collision")
+@export var player_collision_area: Area2D
+@export var player_collision_recoil: float = 100
+
 
 func _ready():
   animator.speed_scale = 0.95 + randf() * 0.1
+  player_collision_area.body_entered.connect(_on_body_entered_player_collision_area)
 
 func _physics_process(delta):
   var target_position = get_closest_player_position()
@@ -38,7 +43,7 @@ func get_closest_player_position() -> Vector2:
   return closest_position
 
 
-func on_coin_hit(coin: CoinController):
+func recieve_coin_contact(coin: CoinController):
   var corpse = corpse_prefab.instantiate()
   get_parent().add_child.call_deferred(corpse)
   corpse.global_position = global_position
@@ -46,3 +51,10 @@ func on_coin_hit(coin: CoinController):
   corpse.linear_velocity = direction * coin.linear_velocity.length()
 
   queue_free()
+
+
+func _on_body_entered_player_collision_area(body: PhysicsBody2D):
+  if body.has_method("recieve_enemy_contact"):
+    body.recieve_enemy_contact(self)
+    var direction = (position - body.position).normalized()
+    velocity = direction * player_collision_recoil
