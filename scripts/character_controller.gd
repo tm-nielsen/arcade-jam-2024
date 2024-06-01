@@ -3,6 +3,7 @@ extends CharacterBody2D
 enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED}
 
 @export_range(1, 2) var player_number: int = 1
+@export var two_player_colour: Color = Color.WHITE
 @export var acceleration: float = 40
 @export var movement_speed: float = 200
 @export var animator: AnimatedSprite2D
@@ -23,6 +24,9 @@ var state: PlayerState
 func _ready():
   if player_number > PlayerCountSelector.playerCount:
     queue_free()
+  elif PlayerCountSelector.playerCount == 2:
+    animator.self_modulate = two_player_colour
+
   dash_timer.timeout.connect(_on_dash_timer_timeout)
   coin_thrower.aiming_started.connect(_on_aiming_started)
   coin_thrower.coin_thrown.connect(_on_coin_thrown)
@@ -43,7 +47,7 @@ func _physics_process(_delta):
     animator.flip_h = input_direction.x > 0
     if state == PlayerState.NEUTRAL:
       animator.play("run")
-      
+
   else:
     velocity = Vector2.ZERO
     if state == PlayerState.NEUTRAL:

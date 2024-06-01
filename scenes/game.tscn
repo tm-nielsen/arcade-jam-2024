@@ -51,10 +51,12 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_yb8dm")
 
 [node name="Player1" parent="." instance=ExtResource("1_xvq7o")]
+two_player_colour = Color(0.8, 0.324, 0.24, 1)
 
 [node name="Player2" parent="." instance=ExtResource("1_xvq7o")]
 position = Vector2(64, 0)
 player_number = 2
+two_player_colour = Color(0.24, 0.52, 0.8, 1)
 
 [node name="Enemy" parent="." instance=ExtResource("3_bjmh1")]
 position = Vector2(191, 1)
