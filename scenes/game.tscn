@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=8 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
 [ext_resource type="Texture2D" uid="uid://cfnskwsshydp5" path="res://sprites/ground_instructions.png" id="1_yb8dm"]
+[ext_resource type="PackedScene" uid="uid://snqevw5plu38" path="res://scenes/prefabs/enemy.tscn" id="3_bjmh1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1g13r"]
 normal = Vector2(0, 1)
@@ -21,12 +22,6 @@ distance = -240.0
 [node name="Game" type="Node2D"]
 texture_filter = 1
 
-[node name="GroundInstructions" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.392157)
-position = Vector2(-80, -40)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_yb8dm")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_left_margin = 0.25
 drag_top_margin = 0.25
@@ -34,12 +29,6 @@ drag_right_margin = 0.25
 drag_bottom_margin = 0.25
 editor_draw_screen = false
 editor_draw_drag_margin = true
-
-[node name="Player1" parent="." instance=ExtResource("1_xvq7o")]
-
-[node name="Player2" parent="." instance=ExtResource("1_xvq7o")]
-position = Vector2(64, 0)
-player_number = 2
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -54,3 +43,24 @@ shape = SubResource("WorldBoundaryShape2D_15rel")
 
 [node name="Right" type="CollisionShape2D" parent="Walls"]
 shape = SubResource("WorldBoundaryShape2D_rjfb1")
+
+[node name="GroundInstructions" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(-81, -40)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_yb8dm")
+
+[node name="Player1" parent="." instance=ExtResource("1_xvq7o")]
+
+[node name="Player2" parent="." instance=ExtResource("1_xvq7o")]
+position = Vector2(64, 0)
+player_number = 2
+
+[node name="Enemy" parent="." instance=ExtResource("3_bjmh1")]
+position = Vector2(191, 1)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_bjmh1")]
+position = Vector2(-180, -75)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_bjmh1")]
+position = Vector2(-119, 79)

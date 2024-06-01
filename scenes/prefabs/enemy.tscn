@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://snqevw5plu38"]
+
+[ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_xlscy"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b4x6q"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mgn3x"]
+width = 20
+height = 20
+noise = SubResource("FastNoiseLite_b4x6q")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mkrrg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vy17k"]
+radius = 8.0
+
+[node name="Enemy" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("1_xlscy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("NoiseTexture2D_mgn3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mkrrg")
+
+[node name="PlayerCollisionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollisionArea"]
+shape = SubResource("CircleShape2D_vy17k")

@@ -1,7 +1,10 @@
+class_name CoinController
 extends RigidBody2D
 
 @export var post_collision_damping: float = 5
 @export var post_collision_angular_damping: float = 5
+
+@export var score_multiplier_increment: float = 0.5
 
 @export_subgroup("trail", "trail")
 @export var trail_line_node: Line2D
@@ -10,6 +13,7 @@ extends RigidBody2D
 @export var trail_cutoff_speed: float = 10
 
 var trail_delay: float = 0
+var score_multiplier: float = 1.0
 
 
 func _ready():
@@ -37,7 +41,12 @@ func add_trail_point():
 
   trail_line_node.points = points
 
-func _on_body_entered(_body: PhysicsBody2D):
+func _on_body_entered(body: PhysicsBody2D):
   linear_damp = post_collision_damping
   angular_damp = post_collision_angular_damping
   add_trail_point()
+
+  if body is EnemyController:
+    body.on_coin_hit(score_multiplier)
+
+  score_multiplier += score_multiplier_increment
