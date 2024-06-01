@@ -16,7 +16,7 @@ func _process(delta):
 
   timer += delta
 
-  var spawn_period = 4 * (2.5 - log(timer))
+  var spawn_period = 2.5 - log(timer)
   if timer > spawn_period:
     spawn_enemy()
     timer -= spawn_period
