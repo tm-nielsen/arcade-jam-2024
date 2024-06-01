@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy841wa2co1r1"]
+[gd_scene load_steps=6 format=3 uid="uid://cy841wa2co1r1"]
 
 [ext_resource type="Script" path="res://scripts/coin_controller.gd" id="1_oj8c0"]
 [ext_resource type="Texture2D" uid="uid://l6ugjgfqf6v0" path="res://sprites/coin.png" id="2_1elgs"]
@@ -10,7 +10,11 @@ bounce = 1.2
 [sub_resource type="CircleShape2D" id="CircleShape2D_w8otl"]
 radius = 5.0
 
-[node name="Coin" type="RigidBody2D"]
+[sub_resource type="Curve" id="Curve_urxrc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Coin" type="RigidBody2D" node_paths=PackedStringArray("trail_line_node")]
 texture_filter = 1
 collision_layer = 4
 collision_mask = 15
@@ -18,9 +22,16 @@ physics_material_override = SubResource("PhysicsMaterial_laooj")
 max_contacts_reported = 6
 contact_monitor = true
 script = ExtResource("1_oj8c0")
+trail_line_node = NodePath("Trail")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_w8otl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1elgs")
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+points = PackedVector2Array(-100, 0, 0, 0)
+width = 6.0
+width_curve = SubResource("Curve_urxrc")
