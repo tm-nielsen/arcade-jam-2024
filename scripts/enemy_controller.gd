@@ -4,7 +4,11 @@ extends CharacterBody2D
 @export var acceleration: float = 2
 @export var damping: float = 0.8
 @export var score_value: int = 50
+@export var animator: AnimatedSprite2D
 
+
+func _ready():
+  animator.speed_scale = 0.95 + randf() * 0.1
 
 func _physics_process(delta):
   var target_position = get_closest_player_position()
@@ -12,6 +16,8 @@ func _physics_process(delta):
   var direction = (target_position - position).normalized()
   velocity += direction * acceleration
   velocity *= 1.0 - damping * delta
+
+  animator.flip_h = direction.x > 0
   
   move_and_slide()
 
