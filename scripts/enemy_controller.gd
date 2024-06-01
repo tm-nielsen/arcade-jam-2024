@@ -50,6 +50,7 @@ func recieve_coin_contact(coin: CoinController):
   var direction = (position - coin.position).normalized()
   corpse.linear_velocity = direction * coin.linear_velocity.length()
 
+  ScoreManager.add_score(int(score_value * coin.score_multiplier))
   queue_free()
 
 

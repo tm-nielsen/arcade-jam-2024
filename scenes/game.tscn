@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=12 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_diw28"]
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
 [ext_resource type="Texture2D" uid="uid://cfnskwsshydp5" path="res://sprites/ground_instructions.png" id="1_yb8dm"]
 [ext_resource type="PackedScene" uid="uid://snqevw5plu38" path="res://scenes/prefabs/enemy.tscn" id="3_bjmh1"]
+[ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="3_f6y8x"]
+[ext_resource type="Script" path="res://scripts/score_display.gd" id="4_jnh5o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1g13r"]
 normal = Vector2(0, 1)
@@ -19,6 +21,9 @@ distance = -240.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjfb1"]
 normal = Vector2(-1, 0)
 distance = -240.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8c04p"]
+light_mode = 1
 
 [node name="Game" type="Node2D"]
 texture_filter = 1
@@ -51,6 +56,20 @@ self_modulate = Color(0.243, 0.2601, 0.3, 1)
 position = Vector2(-80, -40)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_yb8dm")
+
+[node name="ScoreDisplay" type="Label" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_8c04p")
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 100.0
+theme = ExtResource("3_f6y8x")
+theme_override_colors/font_color = Color(0.243137, 0.258824, 0.301961, 1)
+theme_override_font_sizes/font_size = 0
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_jnh5o")
 
 [node name="Player1" parent="." instance=ExtResource("1_xvq7o")]
 two_player_colour = Color(0.8, 0.324, 0.24, 1)
