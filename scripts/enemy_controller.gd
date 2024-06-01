@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 @export_subgroup("player collision", "player_collision")
 @export var player_collision_area: Area2D
-@export var player_collision_recoil: float = 100
+@export var player_collision_recoil: float = 300
 
 
 func _ready():

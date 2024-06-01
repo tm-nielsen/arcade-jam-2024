@@ -8,6 +8,8 @@ enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED, DEAD}
 @export var movement_speed: float = 200
 @export var animator: AnimatedSprite2D
 @export var coin_collection_area: Area2D
+
+@export_subgroup("enemy recoil", "enemy_recoil")
 @export var enemy_recoil: float = 200
 @export var enemy_recoil_damping: float = 3
 

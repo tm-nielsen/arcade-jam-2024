@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=9 format=3 uid="uid://bni3066uriymy"]
 
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_diw28"]
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
 [ext_resource type="Texture2D" uid="uid://cfnskwsshydp5" path="res://sprites/ground_instructions.png" id="1_yb8dm"]
 [ext_resource type="PackedScene" uid="uid://snqevw5plu38" path="res://scenes/prefabs/enemy.tscn" id="3_bjmh1"]
@@ -21,6 +22,7 @@ distance = -240.0
 
 [node name="Game" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_diw28")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_left_margin = 0.25
