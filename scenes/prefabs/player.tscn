@@ -1,24 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp7ps7ubbnqp8"]
+[gd_scene load_steps=7 format=3 uid="uid://dp7ps7ubbnqp8"]
 
 [ext_resource type="Script" path="res://scripts/character_controller.gd" id="1_1n8l4"]
 [ext_resource type="Script" path="res://scripts/coin_thrower.gd" id="2_h16os"]
 [ext_resource type="SpriteFrames" uid="uid://cikjc5sft7k1p" path="res://resources/player_sprite_frames.tres" id="2_x70j7"]
 [ext_resource type="PackedScene" uid="uid://cy841wa2co1r1" path="res://scenes/prefabs/coin.tscn" id="3_kj3n7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bom63"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pak8e"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2khi"]
 radius = 12.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator", "dash_timer", "coin_thrower") groups=["players"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator", "coin_collection_area", "dash_timer", "coin_thrower") groups=["players"]]
 texture_filter = 1
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_1n8l4")
 animator = NodePath("Sprite2D")
+coin_collection_area = NodePath("CoinCollectionArea")
 dash_timer = NodePath("DashTimer")
 coin_thrower = NodePath("CoinThrower")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_bom63")
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pak8e")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
@@ -33,3 +40,11 @@ one_shot = true
 [node name="CoinThrower" type="Node2D" parent="."]
 script = ExtResource("2_h16os")
 coin_prefab = ExtResource("3_kj3n7")
+
+[node name="CoinCollectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinCollectionArea"]
+shape = SubResource("CircleShape2D_h2khi")

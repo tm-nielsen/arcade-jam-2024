@@ -7,6 +7,7 @@ enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED}
 @export var acceleration: float = 40
 @export var movement_speed: float = 200
 @export var animator: AnimatedSprite2D
+@export var coin_collection_area: Area2D
 
 @export_subgroup("dash", "dash")
 @export var dash_initial_acceleration: float = 200
@@ -19,6 +20,7 @@ enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED}
 @export var aiming_movement_speed: float = 60
 
 var state: PlayerState
+var coins_held: int = 1
 
 
 func _ready():
@@ -28,10 +30,13 @@ func _ready():
     animator.self_modulate = two_player_colour
 
   dash_timer.timeout.connect(_on_dash_timer_timeout)
+  animator.animation_finished.connect(_on_animation_finished)
+
   coin_thrower.aiming_started.connect(_on_aiming_started)
   coin_thrower.coin_thrown.connect(_on_coin_thrown)
   coin_thrower.throw_cancelled.connect(_on_coin_throw_cancelled)
-  animator.animation_finished.connect(_on_animation_finished)
+
+  coin_collection_area.body_entered.connect(_on_body_entered_coin_collection_area)
 
 
 func _physics_process(_delta):
@@ -83,6 +88,7 @@ func _on_coin_thrown():
   coin_thrower.disable()
   state = PlayerState.THROWING
   play_numbered_animation("throw")
+  coins_held -= 1
 
 func _on_coin_throw_cancelled():
   if state == PlayerState.AIMING:
@@ -93,16 +99,26 @@ func _on_dash_timer_timeout():
   if state == PlayerState.DASHING:
     state = PlayerState.NEUTRAL
     animator.speed_scale = 1
-    coin_thrower.enable()
+    if coins_held > 0:
+      coin_thrower.enable()
 
 func _on_animation_finished():
   if state == PlayerState.THROWING:
     state = PlayerState.NEUTRAL
-    coin_thrower.enable()
+    if coins_held > 0:
+      coin_thrower.enable()
+
+
+func _on_body_entered_coin_collection_area(body: PhysicsBody2D):
+  if body is CoinController:
+    body.queue_free()
+    coins_held += 1
+    if state == PlayerState.NEUTRAL:
+      coin_thrower.enable()
 
 
 func play_numbered_animation(animation_name: String):
-  animator.play(animation_name + "_%d" % 2)
+  animator.play(animation_name + "_%d" % clampi(coins_held, 0, 3))
 
 
 func get_numbered_input_direction() -> Vector2:
