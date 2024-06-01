@@ -13,10 +13,10 @@ var count_tween: Tween
 var size_tween: Tween
 
 func _ready():
-  ScoreManager.score_added.connect(_on_score_added)
+  ScoreManager.score_increased.connect(_on_score_increased)
   text = "00"
 
-func _on_score_added(_points: int):
+func _on_score_increased(_points: int):
   if count_tween:
     count_tween.kill()
   if size_tween:

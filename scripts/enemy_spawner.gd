@@ -23,8 +23,8 @@ func _process(delta):
 
 func spawn_enemy():
   var new_enemy = bird_prefab.instantiate()
-  add_child(new_enemy)
   new_enemy.position = _get_spawn_position()
+  add_child(new_enemy)
 
 func _get_spawn_position() -> Vector2:
   var random_spawn_position = _get_random_spawn_position()
