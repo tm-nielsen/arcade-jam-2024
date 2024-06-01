@@ -22,6 +22,7 @@ func _process(_delta):
 
 
 func _input(event):
-  if event.is_action("select_1_player") || event.is_action("select_2_players"):
+  if event.is_action("select_1_player") && playerCount != 1 || \
+      event.is_action("select_2_players") && playerCount != 2:
     return
   visible = false
