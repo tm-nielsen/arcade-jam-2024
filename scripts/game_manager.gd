@@ -2,12 +2,14 @@ extends Node2D
 
 @export var final_screen: Control
 @export var focus_element: Control
+@export var score_label: Label
 
 
 func _process(_delta):
   if are_all_players_dead() && !final_screen.visible:
     final_screen.show()
     focus_element.grab_focus()
+    score_label.text = "Final Score: %d!" % ScoreManager.current_score
 
 func are_all_players_dead() -> bool:
   for player in get_tree().get_nodes_in_group("players"):

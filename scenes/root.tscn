@@ -42,9 +42,10 @@ handle_input_locally = false
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Game" parent="GameViewportContainer/GameViewport" node_paths=PackedStringArray("final_screen", "focus_element") instance=ExtResource("1_qbhji")]
+[node name="Game" parent="GameViewportContainer/GameViewport" node_paths=PackedStringArray("final_screen", "focus_element", "score_label") instance=ExtResource("1_qbhji")]
 final_screen = NodePath("../../../FinalScreen")
 focus_element = NodePath("../../../FinalScreen/Buttons/ResetButton")
+score_label = NodePath("../../../FinalScreen/Label")
 
 [node name="FinalScreen" type="Control" parent="."]
 process_mode = 3
