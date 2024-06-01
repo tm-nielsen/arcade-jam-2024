@@ -1,15 +1,17 @@
 extends CharacterBody2D
 
-enum PlayerState {NEUTRAL, DASHING, THROWING, DAMAGED}
+enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED}
 
 @export_range(1, 2) var player_number: int = 1
 @export var acceleration: float = 40
 @export var movement_speed: float = 200
+@export var animator: AnimatedSprite2D
 
 @export_subgroup("dash", "dash")
 @export var dash_initial_acceleration: float = 200
 @export var dash_movement_speed: float = 600
 @export var dash_timer: Timer
+@export var dash_animation_multiplier: float = 1.5
 
 @export_subgroup("throwing")
 @export var coin_thrower: CoinThrower
@@ -24,6 +26,8 @@ func _ready():
   dash_timer.timeout.connect(_on_dash_timer_timeout)
   coin_thrower.aiming_started.connect(_on_aiming_started)
   coin_thrower.coin_thrown.connect(_on_coin_thrown)
+  coin_thrower.throw_cancelled.connect(_on_coin_throw_cancelled)
+  animator.animation_finished.connect(_on_animation_finished)
 
 
 func _physics_process(_delta):
@@ -35,11 +39,20 @@ func _physics_process(_delta):
 
     var maximum_speed = get_maximum_speed()
     velocity = _clamp_vector_length(velocity, maximum_speed)
+
+    animator.flip_h = input_direction.x > 0
+    if state == PlayerState.NEUTRAL:
+      animator.play("run")
+      
   else:
     velocity = Vector2.ZERO
+    if state == PlayerState.NEUTRAL:
+      animator.play("idle")
 
   if is_numbered_action_just_pressed("dash") && state == PlayerState.NEUTRAL:
     state = PlayerState.DASHING
+    animator.speed_scale = dash_animation_multiplier
+    animator.play("run")
     coin_thrower.disable()
     velocity += input_direction * dash_initial_acceleration
     dash_timer.start()
@@ -48,22 +61,38 @@ func _physics_process(_delta):
 
 
 func get_maximum_speed() -> float:
-  if coin_thrower.is_aiming:
-    return aiming_movement_speed
-  if state == PlayerState.DASHING:
-    return dash_movement_speed
+  match state:
+    PlayerState.AIMING:
+      return aiming_movement_speed
+    PlayerState.THROWING:
+      return 0
+    PlayerState.DASHING:
+      return dash_movement_speed
   return movement_speed
 
 
 func _on_aiming_started():
-  pass
+  state = PlayerState.AIMING
+  animator.play("aim")
 
 func _on_coin_thrown():
-  pass
+  coin_thrower.disable()
+  state = PlayerState.THROWING
+  animator.play("throw")
+
+func _on_coin_throw_cancelled():
+  if state == PlayerState.AIMING:
+    state = PlayerState.NEUTRAL
 
 
 func _on_dash_timer_timeout():
   if state == PlayerState.DASHING:
+    state = PlayerState.NEUTRAL
+    animator.speed_scale = 1
+    coin_thrower.enable()
+
+func _on_animation_finished():
+  if state == PlayerState.THROWING:
     state = PlayerState.NEUTRAL
     coin_thrower.enable()
 

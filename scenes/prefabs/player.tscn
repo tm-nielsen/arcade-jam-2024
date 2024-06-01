@@ -1,33 +1,125 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp7ps7ubbnqp8"]
+[gd_scene load_steps=18 format=3 uid="uid://dp7ps7ubbnqp8"]
 
 [ext_resource type="Script" path="res://scripts/character_controller.gd" id="1_1n8l4"]
 [ext_resource type="Script" path="res://scripts/coin_thrower.gd" id="2_h16os"]
+[ext_resource type="Texture2D" uid="uid://dxvoibqwatd33" path="res://sprites/character/throw_medium.png" id="2_uaau2"]
+[ext_resource type="Texture2D" uid="uid://7jqvgs4w5wdy" path="res://sprites/character/run_medium.png" id="3_f3mis"]
 [ext_resource type="PackedScene" uid="uid://cy841wa2co1r1" path="res://scenes/prefabs/coin.tscn" id="3_kj3n7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bom63"]
 radius = 12.0
 
-[sub_resource type="Gradient" id="Gradient_nt3cb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdb0q"]
+atlas = ExtResource("2_uaau2")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ie6r"]
-gradient = SubResource("Gradient_nt3cb")
-width = 24
-height = 24
-fill_from = Vector2(0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hih3"]
+atlas = ExtResource("2_uaau2")
+region = Rect2(0, 0, 32, 32)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dash_timer", "coin_thrower") groups=["players"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycvfg"]
+atlas = ExtResource("3_f3mis")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rttis"]
+atlas = ExtResource("3_f3mis")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tixag"]
+atlas = ExtResource("3_f3mis")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bihs"]
+atlas = ExtResource("3_f3mis")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvwyv"]
+atlas = ExtResource("2_uaau2")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn5o2"]
+atlas = ExtResource("2_uaau2")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it3tp"]
+atlas = ExtResource("2_uaau2")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_834m2"]
+atlas = ExtResource("2_uaau2")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrf02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdb0q")
+}],
+"loop": true,
+"name": &"aim",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hih3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycvfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rttis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tixag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bihs")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvwyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn5o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it3tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_834m2")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 12.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator", "dash_timer", "coin_thrower") groups=["players"]]
 texture_filter = 1
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_1n8l4")
+animator = NodePath("Sprite2D")
 dash_timer = NodePath("DashTimer")
 coin_thrower = NodePath("CoinThrower")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bom63")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_0ie6r")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nrf02")
+animation = &"throw"
+autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2

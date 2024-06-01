@@ -3,6 +3,7 @@ extends Node2D
 
 signal aiming_started
 signal coin_thrown
+signal throw_cancelled
 
 enum ThrowerState {CAN_THROW, AIMING, DISABLED}
 
@@ -24,6 +25,7 @@ func process(input_direction: Vector2, is_throw_pressed: bool):
     throw_coin(input_direction)
   elif state == ThrowerState.AIMING:
     state = ThrowerState.CAN_THROW
+    throw_cancelled.emit()
 
 func throw_coin(direction: Vector2):
   var new_coin: RigidBody2D = coin_prefab.instantiate()
