@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://duhqroiyu3101"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://duhqroiyu3101"]
+
+[ext_resource type="FontFile" uid="uid://pcki5qhxl8u0" path="res://resources/fonts/Bungee-Regular.ttf" id="1_ddptd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y48uf"]
 bg_color = Color(1, 1, 1, 1)
@@ -48,8 +50,9 @@ expand_margin_right = 24.0
 expand_margin_bottom = 12.0
 
 [resource]
+default_font = ExtResource("1_ddptd")
 default_font_size = 96
-BoxContainer/constants/separation = 128
+BoxContainer/constants/separation = 54
 Button/colors/font_color = Color(0.8, 0.8, 0.8, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(0, 0, 0, 1)
