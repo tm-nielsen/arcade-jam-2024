@@ -44,13 +44,13 @@ func get_closest_player_position() -> Vector2:
 
 
 func recieve_coin_contact(coin: CoinController):
+  var points_scored = int(score_value * coin.score_multiplier)
+
   var corpse = corpse_prefab.instantiate()
   get_parent().add_child.call_deferred(corpse)
-  corpse.global_position = global_position
-  var direction = (position - coin.position).normalized()
-  corpse.linear_velocity = direction * coin.linear_velocity.length()
+  corpse.initialize.call_deferred(global_position, points_scored, coin)
 
-  ScoreManager.add_score(int(score_value * coin.score_multiplier))
+  ScoreManager.add_score(points_scored)
   queue_free()
 
 
