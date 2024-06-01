@@ -1,25 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy841wa2co1r1"]
+[gd_scene load_steps=5 format=3 uid="uid://cy841wa2co1r1"]
 
 [ext_resource type="Script" path="res://scripts/coin_controller.gd" id="1_oj8c0"]
+[ext_resource type="Texture2D" uid="uid://l6ugjgfqf6v0" path="res://sprites/coin.png" id="2_1elgs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_laooj"]
 friction = 0.0
 bounce = 1.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w8otl"]
-radius = 6.0
-
-[sub_resource type="Gradient" id="Gradient_hsc8e"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sgo3f"]
-gradient = SubResource("Gradient_hsc8e")
-width = 12
-height = 12
-fill_from = Vector2(0.477064, 0.440367)
-fill_to = Vector2(0.738532, 0.587156)
+radius = 5.0
 
 [node name="Coin" type="RigidBody2D"]
-position = Vector2(64, 0)
 collision_layer = 4
 collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_laooj")
@@ -31,4 +22,4 @@ script = ExtResource("1_oj8c0")
 shape = SubResource("CircleShape2D_w8otl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_sgo3f")
+texture = ExtResource("2_1elgs")
