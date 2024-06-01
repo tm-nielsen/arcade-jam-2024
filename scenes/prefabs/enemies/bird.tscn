@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://snqevw5plu38"]
+
+[ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_rsdai"]
+[ext_resource type="PackedScene" uid="uid://bow8l1jgdbuyy" path="res://scenes/prefabs/enemies/enemy_corpse.tscn" id="2_fatoq"]
+[ext_resource type="Texture2D" uid="uid://d1jvwwsksybq2" path="res://sprites/enemies/bird corpse.png" id="3_34brm"]
+[ext_resource type="SpriteFrames" uid="uid://ds1ria0hvy6um" path="res://resources/sprite_frames/bird_sprite_frames.tres" id="3_vox6o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqxww"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i0co8"]
+radius = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5vqtn"]
+radius = 6.0
+height = 18.0
+
+[node name="Bird" type="CharacterBody2D" node_paths=PackedStringArray("animator", "player_collision_area")]
+texture_filter = 1
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("1_rsdai")
+animator = NodePath("Sprite2D")
+corpse_prefab = ExtResource("2_fatoq")
+corpse_texture = ExtResource("3_34brm")
+player_collision_area = NodePath("PlayerCollisionArea")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -2)
+sprite_frames = ExtResource("3_vox6o")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.687855
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cqxww")
+
+[node name="HeadCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -10)
+shape = SubResource("CircleShape2D_i0co8")
+
+[node name="PlayerCollisionArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollisionArea"]
+position = Vector2(1, 7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5vqtn")

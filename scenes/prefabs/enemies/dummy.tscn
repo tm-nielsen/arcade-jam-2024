@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bewhmifls4f0w"]
+
+[ext_resource type="PackedScene" uid="uid://snqevw5plu38" path="res://scenes/prefabs/enemies/bird.tscn" id="1_c6w8r"]
+[ext_resource type="SpriteFrames" uid="uid://buv7wyevjnwmn" path="res://resources/sprite_frames/dummy_sprite_frames.tres" id="2_bq7ac"]
+[ext_resource type="Texture2D" uid="uid://ci3u47key8xe3" path="res://sprites/enemies/dummy corpse.png" id="2_tyejt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ncnhy"]
+
+[node name="Dummy" instance=ExtResource("1_c6w8r")]
+acceleration = 0.0
+score_value = 10
+corpse_texture = ExtResource("2_tyejt")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, 0)
+sprite_frames = ExtResource("2_bq7ac")
+animation = &"ide"
+autoplay = ""
+frame_progress = 0.683864
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_ncnhy")
+
+[node name="HeadCollider" parent="." index="2"]
+disabled = true
+
+[node name="PlayerCollisionArea" parent="." index="3"]
+monitoring = false

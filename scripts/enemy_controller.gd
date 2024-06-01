@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var score_value: int = 50
 @export var animator: AnimatedSprite2D
 @export var corpse_prefab: PackedScene
+@export var corpse_texture: Texture2D
 
 @export_subgroup("player collision", "player_collision")
 @export var player_collision_area: Area2D
@@ -48,7 +49,7 @@ func recieve_coin_contact(coin: CoinController):
 
   var corpse = corpse_prefab.instantiate()
   get_parent().add_child.call_deferred(corpse)
-  corpse.initialize.call_deferred(global_position, points_scored, coin)
+  corpse.initialize.call_deferred(global_position, points_scored, corpse_texture, coin)
 
   ScoreManager.add_score(points_scored)
   queue_free()

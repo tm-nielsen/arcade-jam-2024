@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://ds1ria0hvy6um"]
+
+[ext_resource type="Texture2D" uid="uid://b8istm8mudtl0" path="res://sprites/enemies/bird.png" id="1_7mmgs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yigbq"]
+atlas = ExtResource("1_7mmgs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63sm8"]
+atlas = ExtResource("1_7mmgs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atn1w"]
+atlas = ExtResource("1_7mmgs")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrgje"]
+atlas = ExtResource("1_7mmgs")
+region = Rect2(32, 32, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yigbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63sm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atn1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrgje")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]

@@ -13,7 +13,7 @@ extends RigidBody2D
 @onready var score_label_final_scale := score_label.scale
 @onready var dissolve_material: ShaderMaterial = base_dissolve_material.duplicate()
 
-func initialize(spawn_position, score_value: int, killing_coin: CoinController):
+func initialize(spawn_position, score_value: int, corpse_texture: Texture2D, killing_coin: CoinController):
   global_position = spawn_position
   var direction = (position - killing_coin.position).normalized()
   linear_velocity = direction * killing_coin.linear_velocity.length()
@@ -32,6 +32,7 @@ func initialize(spawn_position, score_value: int, killing_coin: CoinController):
 
   score_label.material = dissolve_material
   sprite.material = dissolve_material
+  sprite.texture = corpse_texture
 
   var dissolve_tween = create_tween()
   dissolve_tween.tween_interval(lifetime)
