@@ -134,7 +134,9 @@ func _on_animation_finished():
 func _on_body_entered_coin_collection_area(body: PhysicsBody2D):
   if body is CoinController:
     body.queue_free()
-    coins_held += 1
+    if state == PlayerState.DAMAGED && coins_held == -1:
+      coins_held = 1
+      state = PlayerState.NEUTRAL
     if state == PlayerState.NEUTRAL:
       coin_thrower.enable()
 
