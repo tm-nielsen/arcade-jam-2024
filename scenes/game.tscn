@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=7 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
+[ext_resource type="Texture2D" uid="uid://cfnskwsshydp5" path="res://sprites/ground_instructions.png" id="1_yb8dm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1g13r"]
 normal = Vector2(0, 1)
@@ -19,6 +20,12 @@ distance = -240.0
 
 [node name="Game" type="Node2D"]
 texture_filter = 1
+
+[node name="GroundInstructions" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.392157)
+position = Vector2(-80, -40)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_yb8dm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_left_margin = 0.25
