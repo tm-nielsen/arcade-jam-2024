@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxsguugdspvps"]
+[gd_scene load_steps=4 format=3 uid="uid://cxsguugdspvps"]
 
 [ext_resource type="PackedScene" uid="uid://bni3066uriymy" path="res://scenes/game.tscn" id="1_qbhji"]
+[ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="1_xtmch"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_ld4r0"]
 
 [node name="Root" type="Control"]
 texture_filter = 1
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_xtmch")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -20,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.164706, 0.176471, 0.203922, 1)
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="GameViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,11 +33,60 @@ grow_vertical = 2
 stretch = true
 stretch_shrink = 4
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="GameViewport" type="SubViewport" parent="GameViewportContainer"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Game" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_qbhji")]
+[node name="Game" parent="GameViewportContainer/GameViewport" instance=ExtResource("1_qbhji")]
+
+[node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("reset_button", "quit_button")]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ld4r0")
+reset_button = NodePath("ResetButton")
+quit_button = NodePath("QuitButton")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="Label" type="Label" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -618.5
+offset_right = 618.5
+offset_bottom = 175.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "The Game is Paused"
+
+[node name="ResetButton" type="Button" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 1407.0
+offset_top = 483.0
+offset_right = 1671.0
+offset_bottom = 623.0
+text = "Reset"
+
+[node name="QuitButton" type="Button" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 1415.0
+offset_top = 730.0
+offset_right = 1679.0
+offset_bottom = 870.0
+text = "Quit"
