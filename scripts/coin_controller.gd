@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @export var post_collision_damping: float = 5
+@export var post_collision_angular_damping: float = 5
 
 @export_subgroup("trail", "trail")
 @export var trail_line_node: Line2D
@@ -38,4 +39,5 @@ func add_trail_point():
 
 func _on_body_entered(_body: PhysicsBody2D):
   linear_damp = post_collision_damping
+  angular_damp = post_collision_angular_damping
   add_trail_point()

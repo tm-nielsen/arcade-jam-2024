@@ -16,11 +16,13 @@ point_count = 2
 
 [node name="Coin" type="RigidBody2D" node_paths=PackedStringArray("trail_line_node")]
 texture_filter = 1
+position = Vector2(-2, 0)
 collision_layer = 4
 collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_laooj")
 max_contacts_reported = 6
 contact_monitor = true
+angular_velocity = 349.066
 script = ExtResource("1_oj8c0")
 trail_line_node = NodePath("Trail")
 
