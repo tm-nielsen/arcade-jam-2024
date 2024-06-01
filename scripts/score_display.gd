@@ -5,6 +5,8 @@ extends Label
 @export var size_tween_grow_duration: float = 0.2
 @export var size_tween_shrink_duration: float = 0.3
 
+@onready var base_scale = scale
+
 var displayed_score: int = 0
 
 var count_tween: Tween
@@ -12,6 +14,7 @@ var size_tween: Tween
 
 func _ready():
   ScoreManager.score_added.connect(_on_score_added)
+  text = "00"
 
 func _on_score_added(_points: int):
   if count_tween:
@@ -26,8 +29,8 @@ func _on_score_added(_points: int):
 
   size_tween = create_tween()
   size_tween.set_trans(Tween.TRANS_BACK)
-  size_tween.tween_property(self, "scale", size_tween_scale, size_tween_grow_duration)
-  size_tween.tween_property(self, "scale", 1, size_tween_shrink_duration)
+  size_tween.tween_property(self, "scale", size_tween_scale * base_scale, size_tween_grow_duration)
+  size_tween.tween_property(self, "scale", base_scale, size_tween_shrink_duration)
 
 
 func _set_display_score(score: int):
