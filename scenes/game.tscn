@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bni3066uriymy"]
+
+[ext_resource type="Script" path="res://scripts/character_controller.gd" id="1_opk7q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bom63"]
+radius = 12.0
+
+[sub_resource type="Gradient" id="Gradient_nt3cb"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.8, 0.662745, 0.788235, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ie6r"]
+gradient = SubResource("Gradient_nt3cb")
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_left_margin = 0.25
+drag_top_margin = 0.25
+drag_right_margin = 0.25
+drag_bottom_margin = 0.25
+editor_draw_screen = false
+editor_draw_drag_margin = true
+
+[node name="Character" type="CharacterBody2D" parent="."]
+script = ExtResource("1_opk7q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character"]
+shape = SubResource("CircleShape2D_bom63")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character"]
+texture = SubResource("GradientTexture2D_0ie6r")
