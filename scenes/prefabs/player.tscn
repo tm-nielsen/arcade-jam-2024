@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp7ps7ubbnqp8"]
+
+[ext_resource type="Script" path="res://scripts/character_controller.gd" id="1_1n8l4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bom63"]
+radius = 12.0
+
+[sub_resource type="Gradient" id="Gradient_nt3cb"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ie6r"]
+gradient = SubResource("Gradient_nt3cb")
+width = 24
+height = 24
+fill_from = Vector2(0, 1)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dash_timer")]
+position = Vector2(-64, -1)
+script = ExtResource("1_1n8l4")
+dash_initial_acceleration = 200.0
+dash_speed = 600.0
+dash_timer = NodePath("DashTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bom63")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_0ie6r")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
