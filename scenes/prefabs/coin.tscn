@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy841wa2co1r1"]
+[gd_scene load_steps=7 format=3 uid="uid://cy841wa2co1r1"]
 
 [ext_resource type="Script" path="res://scripts/coin_controller.gd" id="1_oj8c0"]
 [ext_resource type="Texture2D" uid="uid://l6ugjgfqf6v0" path="res://sprites/coin.png" id="2_1elgs"]
+[ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="3_o5uul"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_laooj"]
 friction = 0.0
@@ -14,7 +15,7 @@ radius = 5.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Coin" type="RigidBody2D" node_paths=PackedStringArray("trail_line_node")]
+[node name="Coin" type="RigidBody2D" node_paths=PackedStringArray("score_multiplier_label", "trail_line_node")]
 texture_filter = 1
 position = Vector2(-2, 0)
 collision_layer = 4
@@ -25,6 +26,7 @@ max_contacts_reported = 6
 contact_monitor = true
 angular_velocity = 349.066
 script = ExtResource("1_oj8c0")
+score_multiplier_label = NodePath("Multiplier Label")
 trail_line_node = NodePath("Trail")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -38,3 +40,11 @@ top_level = true
 points = PackedVector2Array(-100, 0, 0, 0)
 width = 6.0
 width_curve = SubResource("Curve_urxrc")
+
+[node name="Multiplier Label" type="Label" parent="."]
+offset_top = -24.0
+offset_right = 132.0
+offset_bottom = 73.0
+scale = Vector2(0.2, 0.2)
+theme = ExtResource("3_o5uul")
+text = "+2"

@@ -5,6 +5,7 @@ extends RigidBody2D
 @export var post_collision_angular_damping: float = 5
 
 @export var score_multiplier_increment: float = 1
+@export var score_multiplier_label: Label
 
 @export_subgroup("trail", "trail")
 @export var trail_line_node: Line2D
@@ -15,12 +16,17 @@ extends RigidBody2D
 var trail_delay: float = 0
 var score_multiplier: float = 1.0
 
+var score_multiplier_label_offset: Vector2
+
 
 func _ready():
   linear_damp = 0
   body_entered.connect(_on_body_entered)
   rotation = randf() * 360
   trail_line_node.points = PackedVector2Array()
+  score_multiplier_label_offset = score_multiplier_label.position
+  score_multiplier_label.top_level = true
+  score_multiplier_label.text = ""
 
 func _process(delta):
   trail_delay -= delta
@@ -31,6 +37,10 @@ func _process(delta):
 
     if linear_velocity.length() < trail_cutoff_speed:
       trail_line_node.points.remove_at(0)
+      score_multiplier = 1
+      score_multiplier_label.text = ""
+
+  score_multiplier_label.position = position + score_multiplier_label_offset
     
 
 func add_trail_point():
@@ -50,3 +60,4 @@ func _on_body_entered(body: PhysicsBody2D):
     body.recieve_coin_contact(self)
 
   score_multiplier += score_multiplier_increment
+  score_multiplier_label.text = "+%d" % score_multiplier
