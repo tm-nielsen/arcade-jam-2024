@@ -139,6 +139,8 @@ func _on_body_entered_coin_collection_area(body: PhysicsBody2D):
     if state == PlayerState.DAMAGED && coins_held == -1:
       coins_held = 1
       state = PlayerState.NEUTRAL
+    else:
+      coins_held += 1
     if state == PlayerState.NEUTRAL:
       coin_thrower.enable()
 
