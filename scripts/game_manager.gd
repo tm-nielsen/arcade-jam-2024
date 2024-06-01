@@ -3,6 +3,7 @@ extends Node2D
 enum GameState {TUTORIAL, GAMEPLAY, RESULTS}
 
 @export var tutorial_enemy: EnemyController
+@export var enemySpawner: EnemySpawner
 
 @export_subgroup("results", "results")
 @export var results_screen: Control
@@ -17,7 +18,8 @@ func _process(_delta):
     GameState.TUTORIAL:
       if !tutorial_enemy:
         game_state = GameState.GAMEPLAY
-        # TODO: activate enemy spawner, start tweens to spawn coin pickups
+        enemySpawner.enabled = true
+        # TODO: start tweens to spawn coin pickups
     GameState.GAMEPLAY:
       if are_all_players_dead():
         game_state = GameState.RESULTS

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=14 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_diw28"]
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/score_display.gd" id="4_jnh5o"]
 [ext_resource type="PackedScene" uid="uid://snqevw5plu38" path="res://scenes/prefabs/enemies/bird.tscn" id="7_5fcjv"]
 [ext_resource type="PackedScene" uid="uid://bewhmifls4f0w" path="res://scenes/prefabs/enemies/dummy.tscn" id="7_c3v66"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="7_fbl4k"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1g13r"]
 normal = Vector2(0, 1)
@@ -26,10 +27,11 @@ distance = -240.0
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8c04p"]
 light_mode = 1
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy", "enemySpawner")]
 texture_filter = 1
 script = ExtResource("1_diw28")
 tutorial_enemy = NodePath("Dummy")
+enemySpawner = NodePath("EnemySpawner")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_left_margin = 0.25
@@ -89,5 +91,6 @@ two_player_colour = Color(0.24, 0.52, 0.8, 1)
 [node name="Dummy" parent="." instance=ExtResource("7_c3v66")]
 position = Vector2(160, 0)
 
-[node name="Bird" parent="." instance=ExtResource("7_5fcjv")]
-position = Vector2(175, 90)
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("7_fbl4k")
+bird_prefab = ExtResource("7_5fcjv")
