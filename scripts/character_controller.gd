@@ -11,6 +11,10 @@ enum PlayerState {IDLE, DASHING, DAMAGED}
 var state: PlayerState
 
 
+func _ready():
+  if player_number > PlayerCountSelector.playerCount:
+    queue_free()
+
 func _physics_process(_delta):
   var input_direction := get_input_direction()
 
