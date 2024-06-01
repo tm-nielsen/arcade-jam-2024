@@ -22,15 +22,18 @@ func process(input_direction: Vector2, is_throw_pressed: bool):
 
   elif state == ThrowerState.AIMING && input_direction:
     throw_coin(input_direction)
+  elif state == ThrowerState.AIMING:
+    state = ThrowerState.CAN_THROW
 
 func throw_coin(direction: Vector2):
   var new_coin: RigidBody2D = coin_prefab.instantiate()
-  add_child(new_coin)
 
   new_coin.top_level = true
   new_coin.position = global_position + direction * throw_offset;
   new_coin.linear_velocity = direction * throw_speed
 
+  add_child(new_coin)
+  
   state = ThrowerState.CAN_THROW
   coin_thrown.emit()
 
