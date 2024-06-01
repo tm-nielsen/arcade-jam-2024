@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cy841wa2co1r1" path="res://scenes/prefabs/coin.tscn" id="3_kj3n7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pak8e"]
-radius = 2.0
+radius = 4.0
 height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2khi"]
@@ -15,7 +15,7 @@ radius = 12.0
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator", "coin_collection_area", "dash_timer", "coin_thrower") groups=["players"]]
 texture_filter = 1
 collision_layer = 2
-collision_mask = 13
+collision_mask = 5
 script = ExtResource("1_1n8l4")
 animator = NodePath("Sprite2D")
 coin_collection_area = NodePath("CoinCollectionArea")
@@ -23,7 +23,7 @@ dash_timer = NodePath("DashTimer")
 coin_thrower = NodePath("CoinThrower")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_pak8e")
 

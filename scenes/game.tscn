@@ -45,8 +45,8 @@ shape = SubResource("WorldBoundaryShape2D_15rel")
 shape = SubResource("WorldBoundaryShape2D_rjfb1")
 
 [node name="GroundInstructions" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.392157)
-position = Vector2(-81, -40)
+self_modulate = Color(0.243, 0.2601, 0.3, 1)
+position = Vector2(-80, -40)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_yb8dm")
 

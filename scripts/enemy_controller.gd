@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var damping: float = 0.8
 @export var score_value: int = 50
 @export var animator: AnimatedSprite2D
+@export var corpse_prefab: PackedScene
 
 
 func _ready():
@@ -37,6 +38,11 @@ func get_closest_player_position() -> Vector2:
   return closest_position
 
 
-func on_coin_hit(score_multiplier: float):
-  # TODO: add corpse / 
+func on_coin_hit(coin: CoinController):
+  var corpse = corpse_prefab.instantiate()
+  get_parent().add_child.call_deferred(corpse)
+  corpse.global_position = global_position
+  var direction = (position - coin.position).normalized()
+  corpse.linear_velocity = direction * coin.linear_velocity.length()
+
   queue_free()
