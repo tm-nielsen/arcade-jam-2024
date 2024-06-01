@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp7ps7ubbnqp8"]
+[gd_scene load_steps=7 format=3 uid="uid://dp7ps7ubbnqp8"]
 
 [ext_resource type="Script" path="res://scripts/character_controller.gd" id="1_1n8l4"]
+[ext_resource type="Script" path="res://scripts/coin_thrower.gd" id="2_h16os"]
+[ext_resource type="PackedScene" uid="uid://cy841wa2co1r1" path="res://scenes/prefabs/coin.tscn" id="3_kj3n7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bom63"]
 radius = 12.0
@@ -13,12 +15,12 @@ width = 24
 height = 24
 fill_from = Vector2(0, 1)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dash_timer")]
-position = Vector2(-64, -1)
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("dash_timer", "coin_thrower")]
+collision_layer = 2
+collision_mask = 15
 script = ExtResource("1_1n8l4")
-dash_initial_acceleration = 200.0
-dash_speed = 600.0
 dash_timer = NodePath("DashTimer")
+coin_thrower = NodePath("CoinThrower")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bom63")
@@ -29,3 +31,7 @@ texture = SubResource("GradientTexture2D_0ie6r")
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="CoinThrower" type="Node2D" parent="."]
+script = ExtResource("2_h16os")
+coin_prefab = ExtResource("3_kj3n7")

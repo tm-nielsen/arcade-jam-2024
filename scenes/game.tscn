@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=6 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1g13r"]
+normal = Vector2(0, 1)
+distance = -135.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p15po"]
+distance = -135.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_15rel"]
+normal = Vector2(1, 0)
+distance = -240.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjfb1"]
+normal = Vector2(-1, 0)
+distance = -240.0
 
 [node name="Game" type="Node2D"]
 
@@ -17,3 +32,17 @@ editor_draw_drag_margin = true
 [node name="Player2" parent="." instance=ExtResource("1_xvq7o")]
 position = Vector2(64, 0)
 player_number = 2
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("WorldBoundaryShape2D_1g13r")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("WorldBoundaryShape2D_p15po")
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("WorldBoundaryShape2D_15rel")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("WorldBoundaryShape2D_rjfb1")
