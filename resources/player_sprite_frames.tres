@@ -1,161 +1,155 @@
-[gd_scene load_steps=49 format=3 uid="uid://dp7ps7ubbnqp8"]
+[gd_resource type="SpriteFrames" load_steps=44 format=3 uid="uid://cikjc5sft7k1p"]
 
-[ext_resource type="Script" path="res://scripts/character_controller.gd" id="1_1n8l4"]
-[ext_resource type="Texture2D" uid="uid://b2g8t3r7wmsrx" path="res://sprites/character/throw_small.png" id="2_1d3ey"]
-[ext_resource type="Script" path="res://scripts/coin_thrower.gd" id="2_h16os"]
-[ext_resource type="Texture2D" uid="uid://dxvoibqwatd33" path="res://sprites/character/throw_medium.png" id="2_uaau2"]
-[ext_resource type="Texture2D" uid="uid://7jqvgs4w5wdy" path="res://sprites/character/run_medium.png" id="3_f3mis"]
-[ext_resource type="PackedScene" uid="uid://cy841wa2co1r1" path="res://scenes/prefabs/coin.tscn" id="3_kj3n7"]
-[ext_resource type="Texture2D" uid="uid://pyomyy4d7w37" path="res://sprites/character/throw_large.png" id="4_euwbc"]
-[ext_resource type="Texture2D" uid="uid://bhht2rbiu1lhk" path="res://sprites/character/idle.png" id="5_v7qr5"]
-[ext_resource type="Texture2D" uid="uid://cp3gs3e54xx8o" path="res://sprites/character/run_empty.png" id="6_njo5v"]
-[ext_resource type="Texture2D" uid="uid://5rmohydi2fiv" path="res://sprites/character/run_small.png" id="7_t2t3e"]
-[ext_resource type="Texture2D" uid="uid://c1jw67ut5iv2d" path="res://sprites/character/run_large.png" id="9_jyg00"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bom63"]
-radius = 12.0
+[ext_resource type="Texture2D" uid="uid://b2g8t3r7wmsrx" path="res://sprites/character/throw_small.png" id="1_vtixa"]
+[ext_resource type="Texture2D" uid="uid://dxvoibqwatd33" path="res://sprites/character/throw_medium.png" id="2_0xbq0"]
+[ext_resource type="Texture2D" uid="uid://pyomyy4d7w37" path="res://sprites/character/throw_large.png" id="3_f6ogh"]
+[ext_resource type="Texture2D" uid="uid://bhht2rbiu1lhk" path="res://sprites/character/idle.png" id="4_g4f7k"]
+[ext_resource type="Texture2D" uid="uid://cp3gs3e54xx8o" path="res://sprites/character/run_empty.png" id="5_76crc"]
+[ext_resource type="Texture2D" uid="uid://5rmohydi2fiv" path="res://sprites/character/run_small.png" id="6_2l0k1"]
+[ext_resource type="Texture2D" uid="uid://7jqvgs4w5wdy" path="res://sprites/character/run_medium.png" id="7_5rhyr"]
+[ext_resource type="Texture2D" uid="uid://c1jw67ut5iv2d" path="res://sprites/character/run_large.png" id="8_l1otx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a61up"]
-atlas = ExtResource("2_1d3ey")
+atlas = ExtResource("1_vtixa")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdb0q"]
-atlas = ExtResource("2_uaau2")
+atlas = ExtResource("2_0xbq0")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2he4"]
-atlas = ExtResource("4_euwbc")
+atlas = ExtResource("3_f6ogh")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6hycs"]
-atlas = ExtResource("5_v7qr5")
+atlas = ExtResource("4_g4f7k")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vimqr"]
-atlas = ExtResource("5_v7qr5")
+atlas = ExtResource("4_g4f7k")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xy0bn"]
-atlas = ExtResource("5_v7qr5")
+atlas = ExtResource("4_g4f7k")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eom8p"]
-atlas = ExtResource("5_v7qr5")
+atlas = ExtResource("4_g4f7k")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sk4jb"]
-atlas = ExtResource("6_njo5v")
+atlas = ExtResource("5_76crc")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ho3g"]
-atlas = ExtResource("6_njo5v")
+atlas = ExtResource("5_76crc")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqknl"]
-atlas = ExtResource("6_njo5v")
+atlas = ExtResource("5_76crc")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c305j"]
-atlas = ExtResource("6_njo5v")
+atlas = ExtResource("5_76crc")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_irfh5"]
-atlas = ExtResource("7_t2t3e")
+atlas = ExtResource("6_2l0k1")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bl0w4"]
-atlas = ExtResource("7_t2t3e")
+atlas = ExtResource("6_2l0k1")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrj8e"]
-atlas = ExtResource("7_t2t3e")
+atlas = ExtResource("6_2l0k1")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5gu6f"]
-atlas = ExtResource("7_t2t3e")
+atlas = ExtResource("6_2l0k1")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ycvfg"]
-atlas = ExtResource("3_f3mis")
+atlas = ExtResource("7_5rhyr")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rttis"]
-atlas = ExtResource("3_f3mis")
+atlas = ExtResource("7_5rhyr")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tixag"]
-atlas = ExtResource("3_f3mis")
+atlas = ExtResource("7_5rhyr")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3bihs"]
-atlas = ExtResource("3_f3mis")
+atlas = ExtResource("7_5rhyr")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akuoe"]
-atlas = ExtResource("9_jyg00")
+atlas = ExtResource("8_l1otx")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26brd"]
-atlas = ExtResource("9_jyg00")
+atlas = ExtResource("8_l1otx")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qmfor"]
-atlas = ExtResource("9_jyg00")
+atlas = ExtResource("8_l1otx")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65io8"]
-atlas = ExtResource("9_jyg00")
+atlas = ExtResource("8_l1otx")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8mk0"]
-atlas = ExtResource("2_1d3ey")
+atlas = ExtResource("1_vtixa")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8gctl"]
-atlas = ExtResource("2_1d3ey")
+atlas = ExtResource("1_vtixa")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f4q25"]
-atlas = ExtResource("2_1d3ey")
+atlas = ExtResource("1_vtixa")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fiuar"]
-atlas = ExtResource("2_1d3ey")
+atlas = ExtResource("1_vtixa")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvwyv"]
-atlas = ExtResource("2_uaau2")
+atlas = ExtResource("2_0xbq0")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qn5o2"]
-atlas = ExtResource("2_uaau2")
+atlas = ExtResource("2_0xbq0")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_it3tp"]
-atlas = ExtResource("2_uaau2")
+atlas = ExtResource("2_0xbq0")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_834m2"]
-atlas = ExtResource("2_uaau2")
+atlas = ExtResource("2_0xbq0")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j4g6i"]
-atlas = ExtResource("4_euwbc")
+atlas = ExtResource("3_f6ogh")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_br48g"]
-atlas = ExtResource("4_euwbc")
+atlas = ExtResource("3_f6ogh")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mf1e"]
-atlas = ExtResource("4_euwbc")
+atlas = ExtResource("3_f6ogh")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tsl8"]
-atlas = ExtResource("4_euwbc")
+atlas = ExtResource("3_f6ogh")
 region = Rect2(32, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nrf02"]
+[resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -332,29 +326,3 @@ animations = [{
 "name": &"throw_3",
 "speed": 12.0
 }]
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator", "dash_timer", "coin_thrower") groups=["players"]]
-texture_filter = 1
-collision_layer = 2
-collision_mask = 13
-script = ExtResource("1_1n8l4")
-animator = NodePath("Sprite2D")
-dash_timer = NodePath("DashTimer")
-coin_thrower = NodePath("CoinThrower")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_bom63")
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 1)
-sprite_frames = SubResource("SpriteFrames_nrf02")
-animation = &"throw_1"
-autoplay = "idle_1"
-
-[node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[node name="CoinThrower" type="Node2D" parent="."]
-script = ExtResource("2_h16os")
-coin_prefab = ExtResource("3_kj3n7")

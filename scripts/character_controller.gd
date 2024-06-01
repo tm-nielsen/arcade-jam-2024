@@ -46,17 +46,17 @@ func _physics_process(_delta):
 
     animator.flip_h = input_direction.x > 0
     if state == PlayerState.NEUTRAL:
-      animator.play("run")
+      play_numbered_animation("run")
 
   else:
     velocity = Vector2.ZERO
     if state == PlayerState.NEUTRAL:
-      animator.play("idle")
+      play_numbered_animation("idle")
 
   if is_numbered_action_just_pressed("dash") && state == PlayerState.NEUTRAL:
     state = PlayerState.DASHING
     animator.speed_scale = dash_animation_multiplier
-    animator.play("run")
+    play_numbered_animation("run")
     coin_thrower.disable()
     velocity += input_direction * dash_initial_acceleration
     dash_timer.start()
@@ -77,12 +77,12 @@ func get_maximum_speed() -> float:
 
 func _on_aiming_started():
   state = PlayerState.AIMING
-  animator.play("aim")
+  play_numbered_animation("aim")
 
 func _on_coin_thrown():
   coin_thrower.disable()
   state = PlayerState.THROWING
-  animator.play("throw")
+  play_numbered_animation("throw")
 
 func _on_coin_throw_cancelled():
   if state == PlayerState.AIMING:
@@ -99,6 +99,10 @@ func _on_animation_finished():
   if state == PlayerState.THROWING:
     state = PlayerState.NEUTRAL
     coin_thrower.enable()
+
+
+func play_numbered_animation(animation_name: String):
+  animator.play(animation_name + "_%d" % 2)
 
 
 func get_numbered_input_direction() -> Vector2:
