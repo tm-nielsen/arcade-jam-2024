@@ -23,8 +23,7 @@ func _on_visibility_changed():
   reset_button.grab_focus()
 
 func reset_game():
-  ScoreManager.reset_score()
-  get_tree().reload_current_scene()
+  GameManager.reload_game()
 
 func quit_game():
   get_tree().quit()

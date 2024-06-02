@@ -1,3 +1,4 @@
+class_name GameManager
 extends Node2D
 
 enum GameState {TUTORIAL, GAMEPLAY, RESULTS}
@@ -17,10 +18,12 @@ enum GameState {TUTORIAL, GAMEPLAY, RESULTS}
 @export var results_focus_element: Control
 @export var results_score_label: Label
 
+static var instance
 var game_state: GameState
 
 
 func _ready():
+  instance = self
   background_rect.color = tutorial_background_color
   score_display.hide()
   tutorial_sprite.show()
@@ -37,6 +40,7 @@ func _process(_delta):
     GameState.GAMEPLAY:
       if are_all_players_dead():
         game_state = GameState.RESULTS
+        ScoreManager.lock_score()
         results_screen.show()
         results_focus_element.grab_focus()
         results_score_label.text = "Final Score: %d!" % ScoreManager.current_score
@@ -46,3 +50,7 @@ func are_all_players_dead() -> bool:
     if !player.is_dead:
       return false
   return true
+
+static func reload_game():
+  ScoreManager.reset_score()
+  instance.get_tree().reload_current_scene()

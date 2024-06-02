@@ -22,8 +22,7 @@ func _process(_delta):
 func _set_player_count(new_player_count: int):
   playerCount = new_player_count
   RenderingServer.global_shader_parameter_set("player_count", new_player_count)
-  get_tree().reload_current_scene()
-  ScoreManager.current_score = 0
+  GameManager.reload_game()
 
 func _input(event):
   if event.is_action("select_1_player") && playerCount != 1 || \
