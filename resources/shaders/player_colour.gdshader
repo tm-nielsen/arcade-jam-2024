@@ -2,14 +2,21 @@ shader_type canvas_item;
 
 global uniform vec3 player_colour;
 global uniform vec3 black_colour;
-uniform int player_count: hint_range(1, 2) = 1;
+global uniform int player_count;
+
+uniform bool use_only_primary_colour = false;
 
 void fragment() {
-	if (COLOR.r > 0.0)
-  {
-    if (player_count == 1)
-      COLOR.rgb = player_colour;
-  }
+  if (use_only_primary_colour)
+    COLOR.rgb = player_colour;
   else
-    COLOR.rgb = black_colour;
+  {
+   	if (COLOR.r > 0.0)
+    {
+      if (player_count == 1)
+        COLOR.rgb = player_colour;
+    }
+    else
+      COLOR.rgb = black_colour;
+  }
 }

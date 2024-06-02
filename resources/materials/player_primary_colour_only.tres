@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cwrw4sko68qqr"]
+
+[ext_resource type="Shader" path="res://resources/shaders/player_colour.gdshader" id="1_g4p73"]
+
+[resource]
+shader = ExtResource("1_g4p73")
+shader_parameter/use_only_primary_colour = true

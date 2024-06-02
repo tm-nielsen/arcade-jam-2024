@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/coin_controller.gd" id="1_oj8c0"]
 [ext_resource type="Texture2D" uid="uid://l6ugjgfqf6v0" path="res://sprites/coin.png" id="2_1elgs"]
-[ext_resource type="Material" uid="uid://pb57iummvbem" path="res://resources/materials/player_colour.tres" id="2_ylnq6"]
+[ext_resource type="Material" uid="uid://cwrw4sko68qqr" path="res://resources/materials/player_primary_colour_only.tres" id="2_wmkk7"]
 [ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="3_o5uul"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_laooj"]
@@ -34,18 +34,18 @@ trail_line_node = NodePath("Trail")
 shape = SubResource("CircleShape2D_w8otl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("2_ylnq6")
+material = ExtResource("2_wmkk7")
 texture = ExtResource("2_1elgs")
 
 [node name="Trail" type="Line2D" parent="."]
 top_level = true
-material = ExtResource("2_ylnq6")
+material = ExtResource("2_wmkk7")
 points = PackedVector2Array(-100, 0, 0, 0)
 width = 6.0
 width_curve = SubResource("Curve_urxrc")
 
 [node name="Multiplier Label" type="Label" parent="."]
-material = ExtResource("2_ylnq6")
+material = ExtResource("2_wmkk7")
 offset_top = -24.0
 offset_right = 132.0
 offset_bottom = 73.0
