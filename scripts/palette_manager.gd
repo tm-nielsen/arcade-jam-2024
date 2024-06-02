@@ -6,6 +6,9 @@ extends Control
 
 @export var palette_thresholds: PackedInt32Array = [200, 300, 500, 1000]
 
+@export_subgroup("audio")
+@export var audio_player: AudioStreamPlayer2D
+
 var palette_threshold_index: int = 0
 var last_palette_threshold: int = 0
 
@@ -47,3 +50,4 @@ func _on_score_increased(points_added: int):
       last_palette_threshold += next_pallette_threshold
       palette_threshold_index = clampi(palette_threshold_index + 1, 0, palette_thresholds.size() -1)
       palettes.pick_random().apply()
+      audio_player.play()

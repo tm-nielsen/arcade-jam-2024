@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cxsguugdspvps"]
+[gd_scene load_steps=25 format=3 uid="uid://cxsguugdspvps"]
 
 [ext_resource type="PackedScene" uid="uid://bni3066uriymy" path="res://scenes/game.tscn" id="1_qbhji"]
 [ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="1_xtmch"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/player_count_selector.gd" id="5_7gkuc"]
 [ext_resource type="Script" path="res://scripts/palette_manager.gd" id="8_2lcfj"]
 [ext_resource type="Script" path="res://scripts/palette.gd" id="9_koqyl"]
+[ext_resource type="AudioStream" uid="uid://cg1aurbanfinw" path="res://audio/sfx/SFXScoreThreshold.ogg" id="9_wn7mf"]
 
 [sub_resource type="Resource" id="Resource_4bl03"]
 script = ExtResource("9_koqyl")
@@ -328,7 +329,7 @@ to confirm"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PalletteManager" type="Control" parent="."]
+[node name="PalletteManager" type="Control" parent="." node_paths=PackedStringArray("audio_player")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -336,6 +337,10 @@ script = ExtResource("8_2lcfj")
 tutorial_palette = SubResource("Resource_4bl03")
 starting_palette = SubResource("Resource_dvngt")
 palettes = Array[ExtResource("9_koqyl")]([SubResource("Resource_r1pfj"), SubResource("Resource_mgjw4"), SubResource("Resource_l072l"), SubResource("Resource_wqpla"), SubResource("Resource_68f6c"), SubResource("Resource_866yb"), SubResource("Resource_ai8l7"), SubResource("Resource_snto4"), SubResource("Resource_7krcg"), SubResource("Resource_ygdwk"), SubResource("Resource_e8h6u"), SubResource("Resource_dn4pe"), SubResource("Resource_6ousn")])
+audio_player = NodePath("ThresholdAudioPlayer")
+
+[node name="ThresholdAudioPlayer" type="AudioStreamPlayer2D" parent="PalletteManager"]
+stream = ExtResource("9_wn7mf")
 
 [connection signal="pressed" from="FinalScreen/Buttons/ResetButton" to="PauseMenu" method="reset_game"]
 [connection signal="pressed" from="FinalScreen/Buttons/QuitButton" to="PauseMenu" method="quit_game"]
