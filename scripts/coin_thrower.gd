@@ -14,7 +14,7 @@ enum ThrowerState {CAN_THROW, AIMING, DISABLED}
 var is_aiming: get = get_is_aiming
 var state: ThrowerState
 
-var last_nonzero_input_direction: Vector2
+var last_nonzero_input_direction := Vector2.RIGHT
 
 
 func process(input_direction: Vector2, is_throw_pressed: bool):
