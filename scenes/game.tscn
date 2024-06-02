@@ -123,3 +123,4 @@ enemy_type_timers = Array[ExtResource("11_kojju")]([SubResource("Resource_rblu5"
 [node name="CoinSpawner" type="Node2D" parent="."]
 script = ExtResource("9_vanm6")
 coin_pickup_prefab = ExtResource("10_jkrgl")
+coin_drop_thresholds = [400, 1200, 3000, 8000, 20000]
