@@ -168,6 +168,7 @@ func _on_body_entered_coin_collection_area(body: PhysicsBody2D):
       coins_held = 1
       state = PlayerState.NEUTRAL
       collision_layer = 2
+      ghost_fade_tween.kill()
       animator.modulate.a = 1
     else:
       coins_held += 1
