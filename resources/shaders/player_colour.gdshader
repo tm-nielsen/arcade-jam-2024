@@ -5,6 +5,7 @@ global uniform vec3 black_colour;
 global uniform int player_count;
 
 uniform bool use_only_primary_colour = false;
+uniform bool step_alpha = false;
 
 void fragment() {
   if (use_only_primary_colour)
@@ -19,4 +20,6 @@ void fragment() {
     else
       COLOR.rgb = black_colour;
   }
+  if (step_alpha)
+    COLOR.a = step(0.01, COLOR.a);
 }

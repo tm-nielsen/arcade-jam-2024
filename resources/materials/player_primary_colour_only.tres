@@ -5,3 +5,4 @@
 [resource]
 shader = ExtResource("1_g4p73")
 shader_parameter/use_only_primary_colour = true
+shader_parameter/step_alpha = true
