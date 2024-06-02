@@ -1,11 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=30 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_diw28"]
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
 [ext_resource type="Texture2D" uid="uid://cfnskwsshydp5" path="res://sprites/ground_instructions.png" id="1_yb8dm"]
 [ext_resource type="Material" uid="uid://brw32ffum626l" path="res://resources/materials/accent_colour.tres" id="2_03oq8"]
+[ext_resource type="AudioStream" uid="uid://da7fa66m6qyxo" path="res://audio/DrumsNoLoop.ogg" id="2_6u0yv"]
 [ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="3_f6y8x"]
+[ext_resource type="AudioStream" uid="uid://cbmu58gw4majq" path="res://audio/MelodyNoLoop.ogg" id="3_lyy3q"]
 [ext_resource type="Script" path="res://scripts/score_display.gd" id="4_jnh5o"]
+[ext_resource type="AudioStream" uid="uid://c5y5fp784cn3l" path="res://audio/DrumsYesLoop.ogg" id="4_y6w2y"]
+[ext_resource type="AudioStream" uid="uid://2aex6epk75o4" path="res://audio/MelodyYesLoop.ogg" id="5_vf6oq"]
 [ext_resource type="PackedScene" uid="uid://snqevw5plu38" path="res://scenes/prefabs/enemies/bird.tscn" id="7_5fcjv"]
 [ext_resource type="PackedScene" uid="uid://bewhmifls4f0w" path="res://scenes/prefabs/enemies/dummy.tscn" id="7_c3v66"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="7_fbl4k"]
@@ -68,16 +72,17 @@ score_threshold = 1000
 spawn_delay_multiplier = 10.0
 two_player_spawn_multiplier = 2.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy", "enemy_spawner", "tutorial_sprite", "score_display", "tutorial_theme_player", "gameplay_theme_player", "results_theme_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy", "enemy_spawner", "tutorial_sprite", "score_display", "drums_intro", "melody_intro", "drums_loop", "melody_loop")]
 texture_filter = 1
 script = ExtResource("1_diw28")
 tutorial_enemy = NodePath("Dummy")
 enemy_spawner = NodePath("EnemySpawner")
 tutorial_sprite = NodePath("GroundInstructions")
 score_display = NodePath("ScoreDisplay")
-tutorial_theme_player = NodePath("Music/TutorialTheme")
-gameplay_theme_player = NodePath("Music/GameplayTheme")
-results_theme_player = NodePath("Music/ResultsTheme")
+drums_intro = NodePath("Music/DrumsIntro")
+melody_intro = NodePath("Music/MelodyIntro")
+drums_loop = NodePath("Music/DrumsLoop")
+melody_loop = NodePath("Music/MelodyLoop")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_left_margin = 0.25
@@ -89,11 +94,17 @@ editor_draw_drag_margin = true
 
 [node name="Music" type="Node2D" parent="."]
 
-[node name="TutorialTheme" type="AudioStreamPlayer" parent="Music"]
+[node name="DrumsIntro" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("2_6u0yv")
 
-[node name="GameplayTheme" type="AudioStreamPlayer" parent="Music"]
+[node name="MelodyIntro" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_lyy3q")
 
-[node name="ResultsTheme" type="AudioStreamPlayer" parent="Music"]
+[node name="DrumsLoop" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("4_y6w2y")
+
+[node name="MelodyLoop" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("5_vf6oq")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
