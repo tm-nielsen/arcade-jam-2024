@@ -65,7 +65,7 @@ func _on_body_entered(body: PhysicsBody2D):
   add_trail_point()
 
   if body is EnemyController:
-    body.recieve_coin_contact(self)
+    body.receive_coin_contact(self)
     enemy_bounce_count = _play_sound_from_array(enemy_bounce_sounds, enemy_bounce_count)
   else:
     wall_bounce_count = _play_sound_from_array(wall_bounce_sounds, wall_bounce_count)

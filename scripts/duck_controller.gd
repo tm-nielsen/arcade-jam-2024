@@ -35,7 +35,7 @@ func _physics_process(delta):
   move_and_slide()
 
 
-func recieve_coin_contact(coin: CoinController):
+func receive_coin_contact(coin: CoinController):
   if state != HungerState.HUNGRY:
     super(coin)
     var dropped_coin = coin_pickup_prefab.instantiate()

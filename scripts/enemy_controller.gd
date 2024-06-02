@@ -47,7 +47,7 @@ func get_closest_player_position() -> Vector2:
   return closest_position
 
 
-func recieve_coin_contact(coin: CoinController):
+func receive_coin_contact(coin: CoinController):
   var points_scored = int(score_value * coin.score_multiplier)
 
   var corpse = corpse_prefab.instantiate()
@@ -59,7 +59,7 @@ func recieve_coin_contact(coin: CoinController):
 
 
 func _on_body_entered_player_collision_area(body: PhysicsBody2D):
-  if body.has_method("recieve_enemy_contact"):
-    body.recieve_enemy_contact(self)
+  if body.has_method("receive_enemy_contact"):
+    body.receive_enemy_contact(self)
     var direction = (position - body.position).normalized()
     velocity = direction * player_collision_recoil

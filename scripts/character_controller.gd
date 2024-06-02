@@ -95,7 +95,7 @@ func get_maximum_speed() -> float:
   return movement_speed
 
 
-func recieve_enemy_contact(enemy: EnemyController):
+func receive_enemy_contact(enemy: EnemyController):
   if state != PlayerState.DAMAGED:
     coin_thrower.disable()
     state = PlayerState.DAMAGED
