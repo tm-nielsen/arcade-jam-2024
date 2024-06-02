@@ -14,9 +14,7 @@ corpse_texture = ExtResource("2_tyejt")
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, 0)
 sprite_frames = ExtResource("2_bq7ac")
-animation = &"ide"
-autoplay = ""
-frame_progress = 0.683864
+frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CapsuleShape2D_ncnhy")
