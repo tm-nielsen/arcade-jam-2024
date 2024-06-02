@@ -19,6 +19,7 @@ enum GameState {TUTORIAL, GAMEPLAY, RESULTS}
 @export var results_score_label: Label
 
 static var instance
+static var is_game_over: get = _get_is_game_over
 var game_state: GameState
 
 
@@ -54,3 +55,6 @@ func are_all_players_dead() -> bool:
 static func reload_game():
   ScoreManager.reset_score()
   instance.get_tree().reload_current_scene()
+
+static func _get_is_game_over() -> bool:
+  return instance.game_state == GameState.RESULTS

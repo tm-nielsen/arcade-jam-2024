@@ -92,7 +92,10 @@ func recieve_enemy_contact(enemy: EnemyController):
     coin_thrower.disable()
     state = PlayerState.DAMAGED
     coins_held -= 1
-    play_numbered_animation("damaged")
+    if coins_held >= 0:
+      play_numbered_animation("damaged")
+    else:
+      animator.play("die")
     var direction = (position - enemy.position).normalized()
     velocity = direction * enemy_recoil
 
@@ -129,6 +132,8 @@ func _on_animation_finished():
     play_numbered_animation("run")
     if coins_held < 0:
       state = PlayerState.DEAD
+      animator.play("ghost_idle")
+      collision_layer = 0
     elif coins_held > 0:
       coin_thrower.enable()
 
@@ -136,9 +141,11 @@ func _on_animation_finished():
 func _on_body_entered_coin_collection_area(body: PhysicsBody2D):
   if body is CoinController:
     body.queue_free()
-    if state == PlayerState.DAMAGED && coins_held == -1:
+    if (state == PlayerState.DAMAGED && coins_held == -1) || \
+        (state == PlayerState.DEAD && !GameManager.is_game_over):
       coins_held = 1
       state = PlayerState.NEUTRAL
+      collision_layer = 2
     else:
       coins_held += 1
     if state == PlayerState.NEUTRAL:
