@@ -27,7 +27,7 @@ func spawn_coin():
       coin_pickup.position.x = two_player_spawn_offset
 
       coin_pickup = coin_pickup_prefab.instantiate()
-      add_child(coin_pickup)
+      add_child.call_deferred(coin_pickup)
       coin_pickup.position.x = -two_player_spawn_offset
 
 func _players_have_coins() -> bool:
