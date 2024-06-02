@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=21 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_diw28"]
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://da2j0bgrqhuul" path="res://scenes/prefabs/enemies/enemy_spawn_wrapper.tscn" id="9_4irko"]
 [ext_resource type="Script" path="res://scripts/coin_spawner.gd" id="9_vanm6"]
 [ext_resource type="PackedScene" uid="uid://bp227ttqtg7i5" path="res://scenes/prefabs/coin_pickup.tscn" id="10_jkrgl"]
+[ext_resource type="Script" path="res://scripts/enemy_type_spawn_timer.gd" id="11_kojju"]
+[ext_resource type="PackedScene" uid="uid://dll2mmywjch5q" path="res://scenes/prefabs/enemies/duck.tscn" id="13_pi6r1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1g13r"]
 normal = Vector2(0, 1)
@@ -27,6 +29,20 @@ distance = -240.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjfb1"]
 normal = Vector2(-1, 0)
 distance = -240.0
+
+[sub_resource type="Resource" id="Resource_rblu5"]
+script = ExtResource("11_kojju")
+enemy_prefab = ExtResource("7_5fcjv")
+score_threshold = 0
+spawn_delay_multiplier = 1.0
+two_player_spawn_multiplier = 1.6
+
+[sub_resource type="Resource" id="Resource_5bk2x"]
+script = ExtResource("11_kojju")
+enemy_prefab = ExtResource("13_pi6r1")
+score_threshold = 1000
+spawn_delay_multiplier = 10.0
+two_player_spawn_multiplier = 2.0
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy", "enemy_spawner", "tutorial_sprite", "score_display")]
 texture_filter = 1
@@ -100,10 +116,9 @@ two_player_colour = Color(0.24, 0.52, 0.8, 1)
 position = Vector2(160, 0)
 
 [node name="EnemySpawner" type="Node2D" parent="."]
-position = Vector2(2, 0)
 script = ExtResource("7_fbl4k")
 spawn_wrapper_prefab = ExtResource("9_4irko")
-bird_prefab = ExtResource("7_5fcjv")
+enemy_type_timers = Array[ExtResource("11_kojju")]([SubResource("Resource_rblu5"), SubResource("Resource_5bk2x")])
 
 [node name="CoinSpawner" type="Node2D" parent="."]
 script = ExtResource("9_vanm6")
