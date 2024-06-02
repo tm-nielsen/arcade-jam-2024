@@ -1,4 +1,4 @@
-class_name Pallette
+class_name Palette
 extends Resource
 
 @export var player_colour: Color = Color.WHITE

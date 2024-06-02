@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_ld4r0"]
 [ext_resource type="Texture2D" uid="uid://bn1q5tdhdpcoq" path="res://sprites/input_map.png" id="4_2esfw"]
 [ext_resource type="Script" path="res://scripts/player_count_selector.gd" id="5_7gkuc"]
-[ext_resource type="Script" path="res://scripts/pallette_manager.gd" id="8_2lcfj"]
-[ext_resource type="Script" path="res://scripts/pallette.gd" id="9_koqyl"]
+[ext_resource type="Script" path="res://scripts/palette_manager.gd" id="8_2lcfj"]
+[ext_resource type="Script" path="res://scripts/palette.gd" id="9_koqyl"]
 
 [sub_resource type="Resource" id="Resource_4bl03"]
 script = ExtResource("9_koqyl")
@@ -244,9 +244,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_2lcfj")
-tutorial_pallette = SubResource("Resource_4bl03")
-starting_pallette = SubResource("Resource_dvngt")
-pallettes = Array[ExtResource("9_koqyl")]([SubResource("Resource_r1pfj"), SubResource("Resource_mgjw4")])
+tutorial_palette = SubResource("Resource_4bl03")
+starting_palette = SubResource("Resource_dvngt")
+palettes = Array[ExtResource("9_koqyl")]([SubResource("Resource_r1pfj"), SubResource("Resource_mgjw4")])
 
 [connection signal="pressed" from="FinalScreen/Buttons/ResetButton" to="PauseMenu" method="reset_game"]
 [connection signal="pressed" from="FinalScreen/Buttons/QuitButton" to="PauseMenu" method="quit_game"]
