@@ -18,6 +18,11 @@ enum GameState {TUTORIAL, GAMEPLAY, RESULTS}
 @export var results_focus_element: Control
 @export var results_score_label: Label
 
+@export_subgroup("music")
+@export var tutorial_theme_player: AudioStreamPlayer
+@export var gameplay_theme_player: AudioStreamPlayer
+@export var results_theme_player: AudioStreamPlayer
+
 static var instance
 static var is_game_over: get = _get_is_game_over
 var game_state: GameState
@@ -29,12 +34,15 @@ func _ready():
   background_rect.color = tutorial_background_color
   score_display.hide()
   tutorial_sprite.show()
+  tutorial_theme_player.play()
 
 func _process(_delta):
   match game_state:
     GameState.TUTORIAL:
       if !tutorial_enemy:
         game_state = GameState.GAMEPLAY
+        tutorial_theme_player.stop()
+        gameplay_theme_player.play()
         enemy_spawner.enabled = true
         background_rect.color = gameplay_background_colour
         tutorial_sprite.hide()
@@ -42,6 +50,8 @@ func _process(_delta):
     GameState.GAMEPLAY:
       if are_all_players_dead():
         game_state = GameState.RESULTS
+        gameplay_theme_player.stop()
+        results_theme_player.play()
         ScoreManager.lock_score()
         results_screen.show()
         results_focus_element.grab_focus()

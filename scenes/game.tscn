@@ -68,13 +68,16 @@ score_threshold = 1000
 spawn_delay_multiplier = 10.0
 two_player_spawn_multiplier = 2.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy", "enemy_spawner", "tutorial_sprite", "score_display")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy", "enemy_spawner", "tutorial_sprite", "score_display", "tutorial_theme_player", "gameplay_theme_player", "results_theme_player")]
 texture_filter = 1
 script = ExtResource("1_diw28")
 tutorial_enemy = NodePath("Dummy")
 enemy_spawner = NodePath("EnemySpawner")
 tutorial_sprite = NodePath("GroundInstructions")
 score_display = NodePath("ScoreDisplay")
+tutorial_theme_player = NodePath("Music/TutorialTheme")
+gameplay_theme_player = NodePath("Music/GameplayTheme")
+results_theme_player = NodePath("Music/ResultsTheme")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_left_margin = 0.25
@@ -83,6 +86,14 @@ drag_right_margin = 0.25
 drag_bottom_margin = 0.25
 editor_draw_screen = false
 editor_draw_drag_margin = true
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="TutorialTheme" type="AudioStreamPlayer" parent="Music"]
+
+[node name="GameplayTheme" type="AudioStreamPlayer" parent="Music"]
+
+[node name="ResultsTheme" type="AudioStreamPlayer" parent="Music"]
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
