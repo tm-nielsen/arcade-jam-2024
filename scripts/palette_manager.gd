@@ -6,6 +6,8 @@ extends Control
 
 @export var palette_thresholds: PackedInt32Array = [200, 300, 500, 1000]
 
+@export var locked_palette_icon: CanvasItem
+
 @export_subgroup("audio")
 @export var audio_player: AudioStreamPlayer2D
 
@@ -20,6 +22,7 @@ var selected_palette_index = 0
 
 func _ready():
   tutorial_palette.apply()
+  locked_palette_icon.hide()
   ScoreManager.score_increased.connect(_on_score_increased)
 
 func _process(_delta):
@@ -35,6 +38,7 @@ func _move_palette_selection(increment: int):
   else:
     active_palette = palettes[0]
     palette_override_active = true
+    locked_palette_icon.show()
   active_palette.apply()
 
 
