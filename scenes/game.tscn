@@ -183,10 +183,11 @@ script = ExtResource("7_fbl4k")
 spawn_wrapper_prefab = ExtResource("9_4irko")
 enemy_type_timers = Array[ExtResource("11_kojju")]([SubResource("Resource_rblu5"), SubResource("Resource_5bk2x")])
 
-[node name="CoinSpawner" type="Node2D" parent="."]
+[node name="CoinSpawner" type="Node2D" parent="." node_paths=PackedStringArray("fade_when_no_coins", "fade_when_no_coins_2")]
 script = ExtResource("9_vanm6")
 coin_pickup_prefab = ExtResource("10_jkrgl")
-coin_drop_thresholds = [400, 1200, 3000, 8000, 20000]
+fade_when_no_coins = NodePath("../Music/MelodyIntro")
+fade_when_no_coins_2 = NodePath("../Music/MelodyLoop")
 
 [node name="Bumpers" type="Node2D" parent="."]
 script = ExtResource("15_hmhst")

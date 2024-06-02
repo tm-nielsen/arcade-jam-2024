@@ -6,6 +6,9 @@ extends Node2D
 @export var extant_coin_spawn_offset: float = 16
 @export var empty_bank_mercy_delay: float = 3
 
+@export var fade_when_no_coins: AudioStreamPlayer
+@export var fade_when_no_coins_2: AudioStreamPlayer
+
 var next_threshold_index: int = 0
 var mercy_tween: Tween
 
@@ -17,11 +20,17 @@ func _ready():
   ScoreManager.score_increased.connect(_on_score_inreased)
 
 func _process(_delta):
-  if !_players_have_coins() && !get_tree().get_nodes_in_group("coins") && \
-      (!mercy_tween || !mercy_tween.is_running()):
-    mercy_tween = create_tween()
-    mercy_tween.tween_interval(empty_bank_mercy_delay)
-    mercy_tween.tween_callback(spawn_coin)
+  if !_players_have_coins() && !get_tree().get_nodes_in_group("coins"):
+    if !mercy_tween || !mercy_tween.is_running():
+      mercy_tween = create_tween()
+      mercy_tween.tween_interval(empty_bank_mercy_delay)
+      mercy_tween.tween_callback(spawn_coin)
+
+    fade_when_no_coins.volume_db = linear_to_db(0)
+    fade_when_no_coins_2.volume_db = linear_to_db(0)
+  else:
+    fade_when_no_coins.volume_db = linear_to_db(1)
+    fade_when_no_coins_2.volume_db = linear_to_db(1)
 
 
 func spawn_coin():
