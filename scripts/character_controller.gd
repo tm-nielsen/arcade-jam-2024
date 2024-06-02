@@ -23,10 +23,16 @@ enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED, DEAD}
 @export var coin_thrower: CoinThrower
 @export var aiming_movement_speed: float = 60
 
+@export_subgroup("ghost fade", "ghost_fade")
+@export var ghost_fade_delay: float = 0.2
+@export var ghost_fade_duration: float = 0.4
+@export var ghost_fade_transparency: float = 0.6
+
 var state: PlayerState
 var coins_held: int = 1
-var is_dead: get = _get_is_dead
 
+var is_dead: get = _get_is_dead
+var ghost_fade_tween: Tween
 
 func _ready():
   if player_number > PlayerCountSelector.playerCount:
@@ -95,9 +101,20 @@ func recieve_enemy_contact(enemy: EnemyController):
     if coins_held >= 0:
       play_numbered_animation("damaged")
     else:
-      animator.play("die")
+      _play_death_animation()
     var direction = (position - enemy.position).normalized()
     velocity = direction * enemy_recoil
+
+
+func _play_death_animation():
+  animator.play("die")
+
+  if ghost_fade_tween:
+    ghost_fade_tween.kill()
+  ghost_fade_tween = create_tween()
+  ghost_fade_tween.tween_interval(ghost_fade_delay)
+  ghost_fade_tween.set_trans(Tween.TRANS_CIRC)
+  ghost_fade_tween.tween_property(animator, "modulate:a", ghost_fade_transparency, ghost_fade_duration)
 
 
 func _on_aiming_started():
@@ -146,6 +163,7 @@ func _on_body_entered_coin_collection_area(body: PhysicsBody2D):
       coins_held = 1
       state = PlayerState.NEUTRAL
       collision_layer = 2
+      animator.modulate.a = 1
     else:
       coins_held += 1
     if state == PlayerState.NEUTRAL:
