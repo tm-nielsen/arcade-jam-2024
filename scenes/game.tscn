@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=17 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_diw28"]
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://snqevw5plu38" path="res://scenes/prefabs/enemies/bird.tscn" id="7_5fcjv"]
 [ext_resource type="PackedScene" uid="uid://bewhmifls4f0w" path="res://scenes/prefabs/enemies/dummy.tscn" id="7_c3v66"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="7_fbl4k"]
+[ext_resource type="PackedScene" uid="uid://da2j0bgrqhuul" path="res://scenes/prefabs/enemies/enemy_spawn_wrapper.tscn" id="9_4irko"]
 [ext_resource type="Script" path="res://scripts/coin_spawner.gd" id="9_vanm6"]
 [ext_resource type="PackedScene" uid="uid://bp227ttqtg7i5" path="res://scenes/prefabs/coin_pickup.tscn" id="10_jkrgl"]
 
@@ -101,6 +102,7 @@ position = Vector2(160, 0)
 [node name="EnemySpawner" type="Node2D" parent="."]
 position = Vector2(2, 0)
 script = ExtResource("7_fbl4k")
+spawn_wrapper_prefab = ExtResource("9_4irko")
 bird_prefab = ExtResource("7_5fcjv")
 
 [node name="CoinSpawner" type="Node2D" parent="."]
