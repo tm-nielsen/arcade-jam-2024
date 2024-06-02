@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=26 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_diw28"]
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bp227ttqtg7i5" path="res://scenes/prefabs/coin_pickup.tscn" id="10_jkrgl"]
 [ext_resource type="Script" path="res://scripts/enemy_type_spawn_timer.gd" id="11_kojju"]
 [ext_resource type="PackedScene" uid="uid://dll2mmywjch5q" path="res://scenes/prefabs/enemies/duck.tscn" id="13_pi6r1"]
+[ext_resource type="Script" path="res://scripts/bumper_manager.gd" id="15_hmhst"]
+[ext_resource type="PackedScene" uid="uid://r4ui7y3x1grw" path="res://scenes/prefabs/bumper.tscn" id="16_unksw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1g13r"]
 normal = Vector2(0, 1)
@@ -163,3 +165,7 @@ enemy_type_timers = Array[ExtResource("11_kojju")]([SubResource("Resource_rblu5"
 script = ExtResource("9_vanm6")
 coin_pickup_prefab = ExtResource("10_jkrgl")
 coin_drop_thresholds = [400, 1200, 3000, 8000, 20000]
+
+[node name="Bumpers" type="Node2D" parent="."]
+script = ExtResource("15_hmhst")
+bumper_prefab = ExtResource("16_unksw")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://r4ui7y3x1grw"]
+
+[ext_resource type="Material" uid="uid://brw32ffum626l" path="res://resources/materials/accent_colour.tres" id="1_v5gcb"]
+[ext_resource type="Texture2D" uid="uid://bq40ja05wsyn3" path="res://sprites/circle_256.png" id="2_w2s2p"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i0s7"]
+bounce = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8upa"]
+radius = 128.0
+
+[node name="Bumper" type="AnimatableBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_3i0s7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y8upa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = ExtResource("1_v5gcb")
+texture = ExtResource("2_w2s2p")
