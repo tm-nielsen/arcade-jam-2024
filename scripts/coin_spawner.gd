@@ -4,7 +4,7 @@ extends Node2D
 @export var coin_drop_thresholds: PackedInt32Array = [400, 1000, 1600, 2500, 4000, 8000, 20000]
 @export var two_player_spawn_offset: float = 64
 @export var extant_coin_spawn_offset: float = 16
-@export var empty_bank_mercy_delay: float = 2
+@export var empty_bank_mercy_delay: float = 3
 
 var next_threshold_index: int = 0
 var mercy_tween: Tween
@@ -17,7 +17,8 @@ func _ready():
   ScoreManager.score_increased.connect(_on_score_inreased)
 
 func _process(_delta):
-  if !_players_have_coins() && !get_tree().get_nodes_in_group("coins") && !mercy_tween:
+  if !_players_have_coins() && !get_tree().get_nodes_in_group("coins") && \
+      (!mercy_tween || !mercy_tween.is_running()):
     mercy_tween = create_tween()
     mercy_tween.tween_interval(empty_bank_mercy_delay)
     mercy_tween.tween_callback(spawn_coin)
