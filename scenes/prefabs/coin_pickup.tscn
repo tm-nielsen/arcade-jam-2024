@@ -14,7 +14,6 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="CoinPickup" type="RigidBody2D" node_paths=PackedStringArray("animated_sprite", "collider", "score_multiplier_label", "trail_line_node")]
-position = Vector2(1, 0)
 collision_layer = 4
 collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_hbpst")

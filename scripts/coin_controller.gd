@@ -60,4 +60,4 @@ func _on_body_entered(body: PhysicsBody2D):
     body.recieve_coin_contact(self)
 
   score_multiplier += score_multiplier_increment
-  score_multiplier_label.text = "+%d" % score_multiplier
+  score_multiplier_label.text = "*%d" % score_multiplier
