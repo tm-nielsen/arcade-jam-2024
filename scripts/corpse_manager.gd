@@ -35,6 +35,7 @@ func initialize(spawn_position, score_value: int, corpse_texture: Texture2D, kil
   score_label.material = label_dissolve_material
   sprite.material = sprite_dissolve_material
   sprite.texture = corpse_texture
+  sprite.flip_h = direction.x < 0
 
   var dissolve_tween = create_tween()
   dissolve_tween.tween_interval(lifetime)
