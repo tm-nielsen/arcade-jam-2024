@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://snqevw5plu38"]
+[gd_scene load_steps=9 format=3 uid="uid://snqevw5plu38"]
 
 [ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_rsdai"]
 [ext_resource type="PackedScene" uid="uid://bow8l1jgdbuyy" path="res://scenes/prefabs/enemies/enemy_corpse.tscn" id="2_fatoq"]
 [ext_resource type="Texture2D" uid="uid://d1jvwwsksybq2" path="res://sprites/enemies/bird corpse.png" id="3_34brm"]
 [ext_resource type="SpriteFrames" uid="uid://ds1ria0hvy6um" path="res://resources/sprite_frames/bird_sprite_frames.tres" id="3_vox6o"]
+[ext_resource type="Material" uid="uid://bmp8lh0fpebrt" path="res://resources/materials/enemy_colour.tres" id="4_nrl5g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqxww"]
 radius = 11.0
@@ -26,6 +27,7 @@ corpse_texture = ExtResource("3_34brm")
 player_collision_area = NodePath("PlayerCollisionArea")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("4_nrl5g")
 position = Vector2(-2, -2)
 sprite_frames = ExtResource("3_vox6o")
 animation = &"idle"

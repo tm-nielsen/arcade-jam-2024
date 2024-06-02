@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp227ttqtg7i5"]
+[gd_scene load_steps=8 format=3 uid="uid://bp227ttqtg7i5"]
 
 [ext_resource type="Script" path="res://scripts/coin_pickup_controller.gd" id="1_n104w"]
 [ext_resource type="SpriteFrames" uid="uid://b6ixgp6knofsn" path="res://resources/sprite_frames/coin_pickup_sprite_frames.tres" id="2_0nmyc"]
+[ext_resource type="Material" uid="uid://pb57iummvbem" path="res://resources/materials/player_colour.tres" id="2_3ncnx"]
 [ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="3_q6qh0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hbpst"]
@@ -14,6 +15,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="CoinPickup" type="RigidBody2D" node_paths=PackedStringArray("animated_sprite", "collider", "score_multiplier_label", "trail_line_node")]
+position = Vector2(2, 0)
 collision_layer = 4
 collision_mask = 15
 physics_material_override = SubResource("PhysicsMaterial_hbpst")
@@ -29,17 +31,20 @@ trail_line_node = NodePath("Trail")
 shape = SubResource("CircleShape2D_ckbcs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_3ncnx")
 sprite_frames = ExtResource("2_0nmyc")
 animation = &"spawn"
 autoplay = "spawn"
 
 [node name="Trail" type="Line2D" parent="."]
 top_level = true
+material = ExtResource("2_3ncnx")
 points = PackedVector2Array(-100, 0, 0, 0)
 width = 6.0
 width_curve = SubResource("Curve_1tx4f")
 
 [node name="Multiplier Label" type="Label" parent="."]
+material = ExtResource("2_3ncnx")
 offset_top = -24.0
 offset_right = 132.0
 offset_bottom = 73.0

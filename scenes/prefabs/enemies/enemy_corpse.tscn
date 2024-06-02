@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bow8l1jgdbuyy"]
+[gd_scene load_steps=8 format=3 uid="uid://bow8l1jgdbuyy"]
 
 [ext_resource type="Script" path="res://scripts/corpse_manager.gd" id="1_sx6qc"]
+[ext_resource type="Material" uid="uid://f875w6okwpi" path="res://resources/materials/dissolve_player_colour.tres" id="2_rdtfk"]
 [ext_resource type="Material" uid="uid://2akkjwgd28xk" path="res://resources/materials/dissolve.tres" id="2_ryf4v"]
 [ext_resource type="Texture2D" uid="uid://d1jvwwsksybq2" path="res://sprites/enemies/bird corpse.png" id="3_mkeb6"]
+[ext_resource type="Material" uid="uid://caln0r6a8x2be" path="res://resources/materials/dissolve_accent_colour.tres" id="3_qd6na"]
 [ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="4_i34bk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3kaxx"]
@@ -16,7 +18,8 @@ angular_damp = 2.0
 script = ExtResource("1_sx6qc")
 score_label = NodePath("ScoreLabel")
 sprite = NodePath("Sprite2D")
-base_dissolve_material = ExtResource("2_ryf4v")
+player_dissolve_material = ExtResource("2_rdtfk")
+accent_dissolve_material = ExtResource("3_qd6na")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)

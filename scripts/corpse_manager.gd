@@ -7,11 +7,13 @@ extends RigidBody2D
 @export var lifetime: float = 1.0
 
 @export var sprite: Sprite2D
-@export var base_dissolve_material: ShaderMaterial
+@export var player_dissolve_material: ShaderMaterial
+@export var accent_dissolve_material: ShaderMaterial
 @export var dissolve_duration: float = 1.5
 
 @onready var score_label_final_scale := score_label.scale
-@onready var dissolve_material: ShaderMaterial = base_dissolve_material.duplicate()
+@onready var sprite_dissolve_material: ShaderMaterial = accent_dissolve_material.duplicate()
+@onready var label_dissolve_material: ShaderMaterial = player_dissolve_material.duplicate()
 
 func initialize(spawn_position, score_value: int, corpse_texture: Texture2D, killing_coin: CoinController):
   global_position = spawn_position
@@ -30,8 +32,8 @@ func initialize(spawn_position, score_value: int, corpse_texture: Texture2D, kil
   label_position_tween.set_trans(Tween.TRANS_QUAD)
   label_position_tween.tween_property(score_label, "position:y", score_tween_offset, score_position_tween_duration)
 
-  score_label.material = dissolve_material
-  sprite.material = dissolve_material
+  score_label.material = label_dissolve_material
+  sprite.material = sprite_dissolve_material
   sprite.texture = corpse_texture
 
   var dissolve_tween = create_tween()
@@ -40,4 +42,5 @@ func initialize(spawn_position, score_value: int, corpse_texture: Texture2D, kil
   dissolve_tween.tween_callback(queue_free)
 
 func _set_dissolve_cutoff(v: float):
-  dissolve_material.set_shader_parameter("cutoff", v)
+  sprite_dissolve_material.set_shader_parameter("cutoff", v)
+  label_dissolve_material.set_shader_parameter("cutoff", v)

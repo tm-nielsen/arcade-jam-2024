@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp7ps7ubbnqp8"]
+[gd_scene load_steps=8 format=3 uid="uid://dp7ps7ubbnqp8"]
 
 [ext_resource type="Script" path="res://scripts/character_controller.gd" id="1_1n8l4"]
 [ext_resource type="SpriteFrames" uid="uid://cikjc5sft7k1p" path="res://resources/sprite_frames/player_sprite_frames.tres" id="2_de15h"]
 [ext_resource type="Script" path="res://scripts/coin_thrower.gd" id="2_h16os"]
+[ext_resource type="Material" uid="uid://pb57iummvbem" path="res://resources/materials/player_colour.tres" id="2_vx6xx"]
 [ext_resource type="PackedScene" uid="uid://cy841wa2co1r1" path="res://scenes/prefabs/coin.tscn" id="3_kj3n7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pak8e"]
@@ -28,6 +29,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_pak8e")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_vx6xx")
 position = Vector2(0, 1)
 sprite_frames = ExtResource("2_de15h")
 animation = &"idle_1"

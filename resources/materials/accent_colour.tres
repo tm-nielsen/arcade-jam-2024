@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://brw32ffum626l"]
+
+[ext_resource type="Shader" path="res://resources/shaders/accent_colour.gdshader" id="1_y0mvw"]
+
+[resource]
+shader = ExtResource("1_y0mvw")

@@ -1,10 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxsguugdspvps"]
+[gd_scene load_steps=13 format=3 uid="uid://cxsguugdspvps"]
 
 [ext_resource type="PackedScene" uid="uid://bni3066uriymy" path="res://scenes/game.tscn" id="1_qbhji"]
 [ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="1_xtmch"]
+[ext_resource type="Material" uid="uid://cgdo58pqs3mj4" path="res://resources/materials/background_colour.tres" id="2_b0pl6"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_ld4r0"]
 [ext_resource type="Texture2D" uid="uid://bn1q5tdhdpcoq" path="res://sprites/input_map.png" id="4_2esfw"]
 [ext_resource type="Script" path="res://scripts/player_count_selector.gd" id="5_7gkuc"]
+[ext_resource type="Script" path="res://scripts/pallette_manager.gd" id="8_2lcfj"]
+[ext_resource type="Script" path="res://scripts/pallette.gd" id="9_koqyl"]
+
+[sub_resource type="Resource" id="Resource_4bl03"]
+script = ExtResource("9_koqyl")
+player_colour = Color(1, 1, 1, 1)
+enemy_colour = Color(1, 1, 1, 1)
+black_colour = Color(0, 0, 0, 1)
+accent_colour = Color(0.164706, 0.176471, 0.203922, 1)
+background_colour = Color(0.101961, 0.113725, 0.141176, 1)
+
+[sub_resource type="Resource" id="Resource_dvngt"]
+script = ExtResource("9_koqyl")
+player_colour = Color(1, 1, 1, 1)
+enemy_colour = Color(1, 1, 1, 1)
+black_colour = Color(0, 0, 0, 1)
+accent_colour = Color(0.243137, 0.258824, 0.301961, 1)
+background_colour = Color(0.164706, 0.176471, 0.203922, 1)
+
+[sub_resource type="Resource" id="Resource_r1pfj"]
+script = ExtResource("9_koqyl")
+player_colour = Color(0.8, 0.64, 0.786667, 1)
+enemy_colour = Color(0.71, 0.568, 0.676867, 1)
+black_colour = Color(0.216, 0.2349, 0.27, 1)
+accent_colour = Color(0.6, 0.75, 0.7425, 1)
+background_colour = Color(0.44, 0.55, 0.5445, 1)
+
+[sub_resource type="Resource" id="Resource_mgjw4"]
+script = ExtResource("9_koqyl")
+player_colour = Color(0.8, 0.778667, 0.48, 1)
+enemy_colour = Color(0.8, 0.544, 0.48, 1)
+black_colour = Color(0.28, 0.21, 0.35, 1)
+accent_colour = Color(0.66, 0.4884, 0.396, 1)
+background_colour = Color(0.662745, 0.662745, 0.662745, 1)
 
 [node name="Root" type="Control"]
 texture_filter = 1
@@ -17,6 +52,7 @@ grow_vertical = 2
 theme = ExtResource("1_xtmch")
 
 [node name="Background" type="ColorRect" parent="."]
+material = ExtResource("2_b0pl6")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,6 +238,15 @@ press again
 to confirm"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="PalletteManager" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_2lcfj")
+tutorial_pallette = SubResource("Resource_4bl03")
+starting_pallette = SubResource("Resource_dvngt")
+pallettes = Array[ExtResource("9_koqyl")]([SubResource("Resource_r1pfj"), SubResource("Resource_mgjw4")])
 
 [connection signal="pressed" from="FinalScreen/Buttons/ResetButton" to="PauseMenu" method="reset_game"]
 [connection signal="pressed" from="FinalScreen/Buttons/QuitButton" to="PauseMenu" method="quit_game"]

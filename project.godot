@@ -160,6 +160,7 @@ select_2_players={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Coins"
 2d_physics/layer_4="Enemies"
+2d_physics/layer_6="coin_pickups"
 
 [physics]
 
@@ -169,3 +170,26 @@ select_2_players={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[shader_globals]
+
+black_colour={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}
+player_colour={
+"type": "vec3",
+"value": Vector3(0.8, 1, 0.9)
+}
+background_colour={
+"type": "vec3",
+"value": Vector3(0.2, 0.2, 0.2)
+}
+accent_colour={
+"type": "vec3",
+"value": Vector3(0.5, 0.5, 0.5)
+}
+enemy_colour={
+"type": "vec3",
+"value": Vector3(0.6, 0.4, 0.5)
+}

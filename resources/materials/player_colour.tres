@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://pb57iummvbem"]
+
+[ext_resource type="Shader" path="res://resources/shaders/player_colour.gdshader" id="1_mwe8x"]
+
+[resource]
+shader = ExtResource("1_mwe8x")
+shader_parameter/player_count = 1
