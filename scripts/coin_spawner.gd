@@ -41,3 +41,4 @@ func _on_score_inreased(_score_increased: int):
   if next_threshold_index < coin_drop_thresholds.size() && \
       ScoreManager.current_score > coin_drop_thresholds[next_threshold_index]:
     next_threshold_index += 1
+    spawn_coin()
