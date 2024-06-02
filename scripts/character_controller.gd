@@ -8,6 +8,7 @@ enum PlayerState {NEUTRAL, DASHING, AIMING, THROWING, DAMAGED, DEAD}
 @export var movement_speed: float = 200
 @export var animator: AnimatedSprite2D
 @export var coin_collection_area: Area2D
+@export var audio_player: CharacterAudioPlayer
 
 @export_subgroup("enemy recoil", "enemy_recoil")
 @export var enemy_recoil: float = 200
@@ -75,6 +76,7 @@ func _physics_process(delta):
     state = PlayerState.DASHING
     animator.speed_scale = dash_animation_multiplier
     play_numbered_animation("run")
+    audio_player.play_dash_sound()
     coin_thrower.disable()
     velocity += input_direction * dash_initial_acceleration
     dash_timer.start()
@@ -102,6 +104,7 @@ func recieve_enemy_contact(enemy: EnemyController):
       play_numbered_animation("damaged")
     else:
       _play_death_animation()
+    audio_player.play_hurt_sound()
     var direction = (position - enemy.position).normalized()
     velocity = direction * enemy_recoil
 
@@ -120,11 +123,13 @@ func _play_death_animation():
 func _on_aiming_started():
   state = PlayerState.AIMING
   play_numbered_animation("aim")
+  audio_player.play_aim_sound()
 
 func _on_coin_thrown():
   coin_thrower.disable()
   state = PlayerState.THROWING
   play_numbered_animation("throw")
+  audio_player.play_throw_sound()
   coins_held -= 1
 
 func _on_coin_throw_cancelled():
@@ -168,6 +173,7 @@ func _on_body_entered_coin_collection_area(body: PhysicsBody2D):
       coins_held += 1
     if state == PlayerState.NEUTRAL:
       coin_thrower.enable()
+    audio_player.play_coin_collected_sound()
 
 
 func play_numbered_animation(animation_name: String):

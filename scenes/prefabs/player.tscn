@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp7ps7ubbnqp8"]
+[gd_scene load_steps=14 format=3 uid="uid://dp7ps7ubbnqp8"]
 
 [ext_resource type="Script" path="res://scripts/character_controller.gd" id="1_1n8l4"]
 [ext_resource type="SpriteFrames" uid="uid://cikjc5sft7k1p" path="res://resources/sprite_frames/player_sprite_frames.tres" id="2_de15h"]
 [ext_resource type="Script" path="res://scripts/coin_thrower.gd" id="2_h16os"]
 [ext_resource type="Material" uid="uid://pb57iummvbem" path="res://resources/materials/player_colour.tres" id="2_vx6xx"]
 [ext_resource type="PackedScene" uid="uid://cy841wa2co1r1" path="res://scenes/prefabs/coin.tscn" id="3_kj3n7"]
+[ext_resource type="Script" path="res://scripts/character_audio_player.gd" id="6_0qdc3"]
+[ext_resource type="AudioStream" uid="uid://dunrwo5rx1tlj" path="res://audio/sfx/SFXDash.ogg" id="7_jcpoa"]
+[ext_resource type="AudioStream" uid="uid://dxuikx26ggjrm" path="res://audio/sfx/SFXTakeDamage.ogg" id="8_e66kr"]
+[ext_resource type="AudioStream" uid="uid://c78mavm5vmm5x" path="res://audio/sfx/SFXAim.ogg" id="9_0ptcr"]
+[ext_resource type="AudioStream" uid="uid://btk7ey1cwb5lv" path="res://audio/sfx/SFXThrowCoin.ogg" id="10_mquyo"]
+[ext_resource type="AudioStream" uid="uid://b0gmu0b1gip7n" path="res://audio/sfx/SFXCollectCoin.ogg" id="11_jqku8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pak8e"]
 radius = 4.0
@@ -13,13 +19,14 @@ height = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2khi"]
 radius = 12.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator", "coin_collection_area", "dash_timer", "coin_thrower") groups=["players"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator", "coin_collection_area", "audio_player", "dash_timer", "coin_thrower") groups=["players"]]
 texture_filter = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_1n8l4")
 animator = NodePath("Sprite2D")
 coin_collection_area = NodePath("CoinCollectionArea")
+audio_player = NodePath("AudioPlayer")
 dash_timer = NodePath("DashTimer")
 coin_thrower = NodePath("CoinThrower")
 
@@ -51,3 +58,12 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CoinCollectionArea"]
 shape = SubResource("CircleShape2D_h2khi")
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+max_polyphony = 4
+script = ExtResource("6_0qdc3")
+dash_sound = ExtResource("7_jcpoa")
+hurt_sound = ExtResource("8_e66kr")
+aim_sound = ExtResource("9_0ptcr")
+throw_sound = ExtResource("10_mquyo")
+coin_collected_sound = ExtResource("11_jqku8")
