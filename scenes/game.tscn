@@ -27,11 +27,12 @@ distance = -240.0
 normal = Vector2(-1, 0)
 distance = -240.0
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy", "enemySpawner", "score_display")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("tutorial_enemy", "enemy_spawner", "tutorial_sprite", "score_display")]
 texture_filter = 1
 script = ExtResource("1_diw28")
 tutorial_enemy = NodePath("Dummy")
-enemySpawner = NodePath("EnemySpawner")
+enemy_spawner = NodePath("EnemySpawner")
+tutorial_sprite = NodePath("GroundInstructions")
 score_display = NodePath("ScoreDisplay")
 
 [node name="Camera2D" type="Camera2D" parent="."]

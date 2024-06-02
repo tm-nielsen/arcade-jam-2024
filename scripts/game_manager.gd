@@ -3,7 +3,8 @@ extends Node2D
 enum GameState {TUTORIAL, GAMEPLAY, RESULTS}
 
 @export var tutorial_enemy: EnemyController
-@export var enemySpawner: EnemySpawner
+@export var enemy_spawner: EnemySpawner
+@export var tutorial_sprite: Sprite2D
 @export var score_display: Label
 
 @export_subgroup("menu references")
@@ -22,16 +23,17 @@ var game_state: GameState
 func _ready():
   background_rect.color = tutorial_background_color
   score_display.hide()
+  tutorial_sprite.show()
 
 func _process(_delta):
   match game_state:
     GameState.TUTORIAL:
       if !tutorial_enemy:
         game_state = GameState.GAMEPLAY
-        enemySpawner.enabled = true
+        enemy_spawner.enabled = true
         background_rect.color = gameplay_background_colour
+        tutorial_sprite.hide()
         score_display.show()
-        # TODO: start tweens to spawn coin pickups
     GameState.GAMEPLAY:
       if are_all_players_dead():
         game_state = GameState.RESULTS
