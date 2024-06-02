@@ -8,6 +8,8 @@ enum HungerState {HUNGRY, EATING, FED}
 @export var coin_pickup_prefab: PackedScene
 @export var target_reached_threshold: float = 20
 
+@export var eat_sound_player: AudioStreamPlayer2D
+
 var state: HungerState
 var target_coin: CoinController = null
 var target_position: Vector2
@@ -36,7 +38,7 @@ func _physics_process(delta):
 
 
 func receive_coin_contact(coin: CoinController):
-  if state != HungerState.HUNGRY:
+  if state == HungerState.FED:
     super(coin)
     var dropped_coin = coin_pickup_prefab.instantiate()
     dropped_coin.position = position
@@ -50,6 +52,7 @@ func eat_coin(coin: CoinController):
   target_coin = null
   state = HungerState.EATING
   animator.play("eat")
+  eat_sound_player.play()
   _disable_coin_monitoring.call_deferred()
 
 
