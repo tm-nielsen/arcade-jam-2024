@@ -2,7 +2,8 @@ class_name EnemySpawner
 extends Node2D
 
 @export var spawn_area := Vector2(400, 200)
-@export var player_safety_margin : float = 80
+@export var player_safety_margin: float = 80
+@export var two_player_spawn_multiplier: float = 1.6
 
 @export_subgroup("references")
 @export var spawn_wrapper_prefab: PackedScene
@@ -17,15 +18,24 @@ func _process(delta):
 
   timer += delta
 
-  var spawn_period = 2.5 - log(timer)
+  var spawn_period = _get_spawn_period()
   if timer > spawn_period:
     spawn_enemy()
     timer -= spawn_period
+
 
 func spawn_enemy():
   var spawn_wrapper = spawn_wrapper_prefab.instantiate()
   add_child(spawn_wrapper)
   spawn_wrapper.initialize(_get_spawn_position(), bird_prefab)
+
+
+func _get_spawn_period() -> float:
+  var spawn_period = 2.5 - log(timer)
+  if PlayerCountSelector.playerCount == 2:
+    spawn_period /= two_player_spawn_multiplier
+  return spawn_period
+
 
 func _get_spawn_position() -> Vector2:
   var random_spawn_position = _get_random_spawn_position()
