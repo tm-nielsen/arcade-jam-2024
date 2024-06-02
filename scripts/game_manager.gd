@@ -5,7 +5,7 @@ enum GameState {TUTORIAL, GAMEPLAY, RESULTS}
 
 @export var tutorial_enemy: EnemyController
 @export var enemy_spawner: EnemySpawner
-@export var tutorial_sprite: Sprite2D
+@export var tutorial_sprite: AnimatedSprite2D
 @export var score_display: Label
 
 @export_subgroup("menu references")

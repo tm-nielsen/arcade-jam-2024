@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bni3066uriymy"]
+[gd_scene load_steps=24 format=3 uid="uid://bni3066uriymy"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_diw28"]
 [ext_resource type="PackedScene" uid="uid://dp7ps7ubbnqp8" path="res://scenes/prefabs/player.tscn" id="1_xvq7o"]
@@ -29,6 +29,28 @@ distance = -240.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rjfb1"]
 normal = Vector2(-1, 0)
 distance = -240.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot341"]
+atlas = ExtResource("1_yb8dm")
+region = Rect2(0, 0, 256, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vai1q"]
+atlas = ExtResource("1_yb8dm")
+region = Rect2(0, 192, 256, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_clyhu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot341")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vai1q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="Resource" id="Resource_rblu5"]
 script = ExtResource("11_kojju")
@@ -74,12 +96,12 @@ shape = SubResource("WorldBoundaryShape2D_15rel")
 [node name="Right" type="CollisionShape2D" parent="Walls"]
 shape = SubResource("WorldBoundaryShape2D_rjfb1")
 
-[node name="GroundInstructions" type="Sprite2D" parent="."]
+[node name="GroundInstructions" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0.164706, 0.176471, 0.203922, 1)
 material = ExtResource("2_03oq8")
-position = Vector2(-80, -40)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_yb8dm")
+sprite_frames = SubResource("SpriteFrames_clyhu")
+autoplay = "default"
+frame_progress = 0.577463
 
 [node name="ScoreDisplay" type="Label" parent="."]
 modulate = Color(0.243137, 0.258824, 0.301961, 1)
