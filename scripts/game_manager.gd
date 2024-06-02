@@ -25,6 +25,7 @@ var game_state: GameState
 
 func _ready():
   instance = self
+  Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
   background_rect.color = tutorial_background_color
   score_display.hide()
   tutorial_sprite.show()
