@@ -52,7 +52,7 @@ func _players_have_coins() -> bool:
 
 func _is_last_spawned_coin_untouched() -> bool:
   for coin in last_spawned_coins:
-    if coin && coin.position.y == last_spawned_coin_y_pos:
+    if is_instance_valid(coin) && coin.position.y == last_spawned_coin_y_pos:
       return true
   return false
 
