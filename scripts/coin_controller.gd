@@ -27,6 +27,7 @@ func _ready():
   score_multiplier_label_offset = score_multiplier_label.position
   score_multiplier_label.top_level = true
   score_multiplier_label.text = ""
+  add_to_group("coins")
 
 func _process(delta):
   trail_delay -= delta

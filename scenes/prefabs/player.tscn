@@ -32,6 +32,7 @@ position = Vector2(0, 1)
 sprite_frames = ExtResource("2_de15h")
 animation = &"idle_1"
 autoplay = "idle_1"
+flip_h = true
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
