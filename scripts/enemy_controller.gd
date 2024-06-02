@@ -20,13 +20,16 @@ func _ready():
 func _physics_process(delta):
   var target_position = get_closest_player_position()
 
+  accelerate_towards_target(target_position, acceleration, delta)
+  move_and_slide()
+
+
+func accelerate_towards_target(target_position: Vector2, a: float, delta):
   var direction = (target_position - position).normalized()
-  velocity += direction * acceleration
+  velocity += direction * a
   velocity *= 1.0 - damping * delta
 
   animator.flip_h = direction.x > 0
-  
-  move_and_slide()
 
 
 func get_closest_player_position() -> Vector2:

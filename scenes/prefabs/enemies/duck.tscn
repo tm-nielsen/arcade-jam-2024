@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://dll2mmywjch5q"]
+
+[ext_resource type="Script" path="res://scripts/duck_controller.gd" id="1_q6ef3"]
+[ext_resource type="Material" uid="uid://bmp8lh0fpebrt" path="res://resources/materials/enemy_colour.tres" id="1_xvu2v"]
+[ext_resource type="PackedScene" uid="uid://bp227ttqtg7i5" path="res://scenes/prefabs/coin_pickup.tscn" id="2_b7fhs"]
+[ext_resource type="PackedScene" uid="uid://bow8l1jgdbuyy" path="res://scenes/prefabs/enemies/enemy_corpse.tscn" id="2_lc6ml"]
+[ext_resource type="SpriteFrames" uid="uid://dcrraxt3me3bw" path="res://resources/sprite_frames/duck_sprite_frames.tres" id="2_lgfwq"]
+[ext_resource type="Texture2D" uid="uid://cniuud0eqgau" path="res://sprites/enemies/duck_corpse.png" id="3_n6pg5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdw00"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vf4k"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4g8l2"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hogwr"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wlnq"]
+radius = 64.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2udls"]
+radius = 16.0
+height = 64.0
+
+[node name="Duck" type="CharacterBody2D" node_paths=PackedStringArray("coin_detection_area", "coin_collection_area", "animator", "player_collision_area")]
+texture_filter = 1
+position = Vector2(-3, 0)
+script = ExtResource("1_q6ef3")
+coin_detection_area = NodePath("CoinDetectionArea")
+coin_collection_area = NodePath("CoinConsumptionArea")
+coin_detected_acceleration = 8.0
+coin_pickup_prefab = ExtResource("2_b7fhs")
+damping = 3.0
+score_value = 200
+animator = NodePath("Sprite2D")
+corpse_prefab = ExtResource("2_lc6ml")
+corpse_texture = ExtResource("3_n6pg5")
+player_collision_area = NodePath("PlayerCollisionArea")
+player_collision_recoil = 200.0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("1_xvu2v")
+position = Vector2(-2, -2)
+sprite_frames = ExtResource("2_lgfwq")
+animation = &"walk_eaten"
+autoplay = "walk"
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_tdw00")
+
+[node name="HeadCollider" type="CollisionShape2D" parent="."]
+position = Vector2(2, -11)
+shape = SubResource("CircleShape2D_7vf4k")
+
+[node name="BeakCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-8, -7)
+shape = SubResource("CircleShape2D_4g8l2")
+
+[node name="PlayerCollisionArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollisionArea"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_hogwr")
+
+[node name="CoinDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinDetectionArea"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_3wlnq")
+
+[node name="CoinConsumptionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinConsumptionArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2udls")

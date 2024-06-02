@@ -1,0 +1,113 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://dcrraxt3me3bw"]
+
+[ext_resource type="Texture2D" uid="uid://2f6x4jl2gop0" path="res://sprites/enemies/duck_eat.png" id="1_sus4e"]
+[ext_resource type="Texture2D" uid="uid://b8kxhe8mtbsbl" path="res://sprites/enemies/duck_walk.png" id="2_xw0bv"]
+[ext_resource type="Texture2D" uid="uid://hdgdsfmki3w" path="res://sprites/enemies/duck_run.png" id="2_yxk3e"]
+[ext_resource type="Texture2D" uid="uid://ddsqc6vqe6qbx" path="res://sprites/enemies/duck_walk_eaten.png" id="3_dy0so"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewv17"]
+atlas = ExtResource("1_sus4e")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpjn5"]
+atlas = ExtResource("1_sus4e")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvb60"]
+atlas = ExtResource("2_yxk3e")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6djb"]
+atlas = ExtResource("2_yxk3e")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c301c"]
+atlas = ExtResource("2_xw0bv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq0gy"]
+atlas = ExtResource("2_xw0bv")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtvtm"]
+atlas = ExtResource("2_xw0bv")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfi8n"]
+atlas = ExtResource("2_xw0bv")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqt4r"]
+atlas = ExtResource("3_dy0so")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lnbc"]
+atlas = ExtResource("3_dy0so")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj8ud"]
+atlas = ExtResource("3_dy0so")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yr87"]
+atlas = ExtResource("3_dy0so")
+region = Rect2(64, 64, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewv17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpjn5")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvb60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6djb")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c301c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq0gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtvtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfi8n")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqt4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lnbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj8ud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yr87")
+}],
+"loop": true,
+"name": &"walk_eaten",
+"speed": 12.0
+}]

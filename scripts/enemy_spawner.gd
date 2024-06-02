@@ -38,9 +38,9 @@ func _get_spawn_period() -> float:
 
 
 func _get_spawn_position() -> Vector2:
-  var random_spawn_position = _get_random_spawn_position()
+  var random_spawn_position = get_random_spawn_position()
   while _is_point_too_close_to_player(random_spawn_position):
-    random_spawn_position = _get_random_spawn_position()
+    random_spawn_position = get_random_spawn_position()
   return random_spawn_position
 
 func _is_point_too_close_to_player(point: Vector2) -> bool:
@@ -49,7 +49,7 @@ func _is_point_too_close_to_player(point: Vector2) -> bool:
       return true
   return false
 
-func _get_random_spawn_position() -> Vector2:
+func get_random_spawn_position() -> Vector2:
   var spawn_position = Vector2()
   spawn_position.x = _get_random_point_in_span(spawn_area.x)
   spawn_position.y = _get_random_point_in_span(spawn_area.y)
