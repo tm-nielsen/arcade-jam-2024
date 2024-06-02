@@ -14,18 +14,23 @@ enum ThrowerState {CAN_THROW, AIMING, DISABLED}
 var is_aiming: get = get_is_aiming
 var state: ThrowerState
 
+var last_nonzero_input_direction: Vector2
+
 
 func process(input_direction: Vector2, is_throw_pressed: bool):
+  if input_direction:
+    last_nonzero_input_direction = input_direction
+
   if is_throw_pressed:
     if state == ThrowerState.CAN_THROW:
       state = ThrowerState.AIMING
       aiming_started.emit()
 
-  elif state == ThrowerState.AIMING && input_direction:
-    throw_coin(input_direction)
   elif state == ThrowerState.AIMING:
-    state = ThrowerState.CAN_THROW
-    throw_cancelled.emit()
+    if input_direction:
+      throw_coin(input_direction)
+    else:
+      throw_coin(last_nonzero_input_direction)
 
 func throw_coin(direction: Vector2):
   var new_coin: RigidBody2D = coin_prefab.instantiate()
