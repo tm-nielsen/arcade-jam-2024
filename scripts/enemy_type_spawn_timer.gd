@@ -11,10 +11,17 @@ signal spawn_delay_timeout(prefab: PackedScene)
 var first_unit_spawned: bool
 var timer: float
 
+var score_signal_connected: bool
+
 
 func connect_signals(spawn_function: Callable):
+  first_unit_spawned = false
+  timer = 0
   spawn_delay_timeout.connect(spawn_function)
-  ScoreManager.score_increased.connect(_on_score_increased)
+  
+  if !score_signal_connected:
+    ScoreManager.score_increased.connect(_on_score_increased)
+    score_signal_connected = true
 
 func process(delta):
   if ScoreManager.current_score > score_threshold:
