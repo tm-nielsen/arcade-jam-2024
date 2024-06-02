@@ -28,18 +28,18 @@ background_colour = Color(0.164706, 0.176471, 0.203922, 1)
 [sub_resource type="Resource" id="Resource_r1pfj"]
 script = ExtResource("9_koqyl")
 player_colour = Color(0.490196, 0.556863, 0.701961, 1)
-enemy_colour = Color(0.8, 0.662745, 0.788235, 1)
+enemy_colour = Color(0.85098, 0.596078, 0.764706, 1)
 black_colour = Color(0.216, 0.2349, 0.27, 1)
 accent_colour = Color(0.455, 0.65, 0.64025, 1)
-background_colour = Color(0.6, 0.72, 0.75, 1)
+background_colour = Color(0.76, 0.912, 0.95, 1)
 
 [sub_resource type="Resource" id="Resource_mgjw4"]
 script = ExtResource("9_koqyl")
 player_colour = Color(0.8, 0.778667, 0.48, 1)
-enemy_colour = Color(0.42, 0.7, 0.513333, 1)
+enemy_colour = Color(0.36, 0.6, 0.44, 1)
 black_colour = Color(0.405, 0.45, 0.27, 1)
 accent_colour = Color(0.66, 0.4884, 0.396, 1)
-background_colour = Color(0.662745, 0.662745, 0.662745, 1)
+background_colour = Color(0.84, 0.6216, 0.504, 1)
 
 [sub_resource type="Resource" id="Resource_l072l"]
 script = ExtResource("9_koqyl")
@@ -75,8 +75,8 @@ background_colour = Color(0.94902, 0.827451, 0.596078, 1)
 
 [sub_resource type="Resource" id="Resource_ai8l7"]
 script = ExtResource("9_koqyl")
-player_colour = Color(0.639216, 0.768627, 0.737255, 1)
-enemy_colour = Color(0.94902, 0.905882, 0.788235, 1)
+player_colour = Color(0.4851, 0.63, 0.593775, 1)
+enemy_colour = Color(0.98, 0.935573, 0.8134, 1)
 black_colour = Color(0.254902, 0.235294, 0.345098, 1)
 accent_colour = Color(0.905882, 0.937255, 0.772549, 1)
 background_colour = Color(0.74902, 0.843137, 0.709804, 1)
