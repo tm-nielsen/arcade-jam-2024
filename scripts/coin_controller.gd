@@ -1,8 +1,8 @@
 class_name CoinController
 extends RigidBody2D
 
-@export var post_collision_damping: float = 5
-@export var post_collision_angular_damping: float = 5
+@export var post_collision_damping: float = 0.9
+@export var post_collision_angular_damping: float = 2
 
 @export var score_multiplier_increment: float = 1
 @export var score_multiplier_label: Label
