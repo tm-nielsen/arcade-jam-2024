@@ -13,10 +13,17 @@ extends RigidBody2D
 @export var trail_max_points: int = 12
 @export var trail_cutoff_speed: float = 10
 
+@export_subgroup("audio")
+@export var wall_bounce_sounds: Array[AudioStream]
+@export var enemy_bounce_sounds: Array[AudioStream]
+@export var audio_player: AudioStreamPlayer2D
+
 var trail_delay: float = 0
 var score_multiplier: float = 1.0
 
 var score_multiplier_label_offset: Vector2
+var wall_bounce_count: int
+var enemy_bounce_count: int
 
 
 func _ready():
@@ -59,6 +66,15 @@ func _on_body_entered(body: PhysicsBody2D):
 
   if body is EnemyController:
     body.recieve_coin_contact(self)
+    enemy_bounce_count = _play_sound_from_array(enemy_bounce_sounds, enemy_bounce_count)
+  else:
+    wall_bounce_count = _play_sound_from_array(wall_bounce_sounds, wall_bounce_count)
 
   score_multiplier += score_multiplier_increment
   score_multiplier_label.text = "*%d" % score_multiplier
+
+func _play_sound_from_array(sound_array: Array[AudioStream], index: int) -> int:
+  var sound = sound_array[index]
+  audio_player.stream = sound
+  audio_player.play()
+  return clampi(index + 1, 0, sound_array.size() - 1)

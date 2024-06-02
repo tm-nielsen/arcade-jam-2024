@@ -1,9 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy841wa2co1r1"]
+[gd_scene load_steps=14 format=3 uid="uid://cy841wa2co1r1"]
 
 [ext_resource type="Script" path="res://scripts/coin_controller.gd" id="1_oj8c0"]
 [ext_resource type="Texture2D" uid="uid://l6ugjgfqf6v0" path="res://sprites/coin.png" id="2_1elgs"]
+[ext_resource type="AudioStream" uid="uid://bo0imavya4prg" path="res://audio/sfx/coin/SFXCoinWallBounce1.ogg" id="2_3q6hb"]
 [ext_resource type="Material" uid="uid://cwrw4sko68qqr" path="res://resources/materials/player_primary_colour_only.tres" id="2_wmkk7"]
+[ext_resource type="AudioStream" uid="uid://dw17ew6oqb55p" path="res://audio/sfx/coin/SFXCoinWallBounce2.ogg" id="3_lo30r"]
 [ext_resource type="Theme" uid="uid://duhqroiyu3101" path="res://resources/ui_theme.tres" id="3_o5uul"]
+[ext_resource type="AudioStream" uid="uid://pl63xfitvxwx" path="res://audio/sfx/coin/SFXCoinWallBounce3.ogg" id="4_05w7w"]
+[ext_resource type="AudioStream" uid="uid://bf57ycrm2qbmc" path="res://audio/sfx/coin/SFXKillEnemy1.ogg" id="5_li4up"]
+[ext_resource type="AudioStream" uid="uid://3djdo3n3gxus" path="res://audio/sfx/coin/SFXKillEnemy2.ogg" id="6_wjaws"]
+[ext_resource type="AudioStream" uid="uid://ctfym08nkix0o" path="res://audio/sfx/coin/SFXKillEnemy3.ogg" id="7_rg4qn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_laooj"]
 friction = 0.0
@@ -16,7 +22,7 @@ radius = 5.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Coin" type="RigidBody2D" node_paths=PackedStringArray("score_multiplier_label", "trail_line_node")]
+[node name="Coin" type="RigidBody2D" node_paths=PackedStringArray("score_multiplier_label", "trail_line_node", "audio_player")]
 texture_filter = 1
 position = Vector2(-2, 0)
 collision_layer = 4
@@ -29,6 +35,9 @@ angular_velocity = 349.066
 script = ExtResource("1_oj8c0")
 score_multiplier_label = NodePath("Multiplier Label")
 trail_line_node = NodePath("Trail")
+wall_bounce_sounds = Array[AudioStream]([ExtResource("2_3q6hb"), ExtResource("3_lo30r"), ExtResource("4_05w7w")])
+enemy_bounce_sounds = Array[AudioStream]([ExtResource("5_li4up"), ExtResource("6_wjaws"), ExtResource("7_rg4qn")])
+audio_player = NodePath("BounceSoundPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_w8otl")
@@ -52,3 +61,5 @@ offset_bottom = 73.0
 scale = Vector2(0.2, 0.2)
 theme = ExtResource("3_o5uul")
 text = "+2"
+
+[node name="BounceSoundPlayer" type="AudioStreamPlayer2D" parent="."]
